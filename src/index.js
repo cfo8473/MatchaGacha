@@ -23,6 +23,22 @@ document.addEventListener("DOMContentLoaded", function() {
   const backgroundMountainsCanvas = document.getElementById('background-mountains-canvas');
   const backgroundMountainsCanvasContext = backgroundMountainsCanvas.getContext('2d');
 
+  const partyCanvasA = document.getElementById('party-member-canvas-a');
+  const partyCanvasContextA = partyCanvasA.getContext('2d');
+
+  const partyCanvasB = document.getElementById('party-member-canvas-b');
+  const partyCanvasContextB = partyCanvasB.getContext('2d');
+
+  const partyCanvasC = document.getElementById('party-member-canvas-c');
+  const partyCanvasContextC = partyCanvasC.getContext('2d');
+
+  const partyCanvasD = document.getElementById('party-member-canvas-d');
+  const partyCanvasContextD = partyCanvasD.getContext('2d');
+
+  const partyCanvasGroup = [partyCanvasContextA, partyCanvasContextB, partyCanvasContextC, partyCanvasContextD];
+
+
+
 
   const game = new Game(
     canvasContext, 
@@ -33,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
     cloudLayerContextC,
     hillContext,
     skyContext,
-    
+    partyCanvasGroup
   );
   game.draw();
   

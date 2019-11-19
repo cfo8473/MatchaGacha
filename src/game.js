@@ -1,6 +1,7 @@
 const Player = require('./player');
 const Tap = require('./tap');
 const Scroller = require('./scroller');
+const Party = require('./party');
 
 class Game {
   constructor(
@@ -11,7 +12,8 @@ class Game {
             cloudLayerContextA, 
             cloudLayerContextC, 
             hillContext,
-            skyContext
+            skyContext,
+            partyCanvasGroupContext
             ) 
     {
       this.context = context;
@@ -34,6 +36,13 @@ class Game {
         cloudLayerContextA,
         cloudLayerContextC
       );
+
+      this.drawParty(
+        partyCanvasGroupContext[0],
+        partyCanvasGroupContext[1],
+        partyCanvasGroupContext[2],
+        partyCanvasGroupContext[3],
+      )
 
   }
 
@@ -87,17 +96,47 @@ class Game {
       this.cloudLayerC = new Scroller(cloudLayerContextC, cloudLayerC, -10, 768, 0.6)
   }
 
+  drawParty(partyAContext, partyBContext, partyCContext, partyDContext) {
+    const heroAIdle = new Image();
+    heroAIdle.src = "../assets/images/characters/hero/lufia-a-idle.png";
+    this.heroA = new Party(partyAContext, heroAIdle, 5, 95);
+
+    const heroBIdle = new Image();
+    heroBIdle.src = "../assets/images/characters/hero/lufia-b-idle.png";
+    this.heroB = new Party(partyBContext, heroBIdle, 5, 95);
+
+    const heroCIdle = new Image();
+    heroCIdle.src = "../assets/images/characters/hero/lufia-c-idle.png";
+    this.heroC = new Party(partyCContext, heroCIdle, 5, 95);
+
+    const heroDIdle = new Image();
+    heroDIdle.src = "../assets/images/characters/hero/lufia-d-idle.png";
+    this.heroD = new Party(partyDContext, heroDIdle, 5, 95);
+  }
+
   draw() {
     requestAnimationFrame(this.draw);
     // temporary stat display
     this.player.drawTapPower(this.context);
+
+    // main canvas parallax draw
     this.hill.draw();
     this.sky.draw();
     this.cloudLayerA.draw();
     this.cloudLayerC.draw();
     this.mountains.draw();
     this.backgroundMountains.draw();
+
+    // party  member draw
+    this.heroA.draw();
+    this.heroB.draw();
+    this.heroC.draw();
+    this.heroD.draw();
+
     this.gameCanvas.focus();
+    
+
+    // party canvas draw
   }
 
 }

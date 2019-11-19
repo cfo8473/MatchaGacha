@@ -8,6 +8,7 @@ class Scroller {
     this.speed = speed;
     this.height = this.context.canvas.height;
     this.width = this.context.canvas.width;
+
   }
 
   draw() {

@@ -1,5 +1,5 @@
 body {
-  background: rgb(76, 87, 76);
+  background: rgb(58, 58, 58);
   color: white;
 }
 
@@ -79,11 +79,48 @@ body {
 
 }
 
-#party-member-canvas {
+
+/* make dry */
+#party-member-canvas-a {
   margin-left: 0px;
-  margin-top: 4px;
+  margin-top: 5px;
   margin-right: 0px;
   padding: 0px;
-  background: white;
+  background: #a8d2d677;
+  border-radius: 5px;
   display: inline-block;
+  border: 1px solid #D1E7C2;
+}
+
+#party-member-canvas-b {
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-right: 0px;
+  padding: 0px;
+  background: #a8d2d677;
+  border-radius: 5px;
+  display: inline-block;
+  border: 1px solid #D1E7C2;
+}
+
+#party-member-canvas-c {
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-right: 0px;
+  padding: 0px;
+  background: #a8d2d677;
+  border-radius: 5px;
+  display: inline-block;
+  border: 1px solid #D1E7C2;
+}
+
+#party-member-canvas-d {
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-right: 0px;
+  padding: 0px;
+  background: #a8d2d677;
+  border-radius: 5px;
+  display: inline-block;
+  border: 1px solid #D1E7C2;
 }
