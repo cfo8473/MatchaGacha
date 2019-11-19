@@ -1,7 +1,18 @@
+const HERO_IMAGES = {
+  heroAttackA: "../assets/images/characters/hero/lufia-a-attack.png",
+  heroAttackB: "../assets/images/characters/hero/lufia-b-attack.png",
+  heroAttackC: "../assets/images/characters/hero/lufia-c-attack.png",
+  heroAttackD: "../assets/images/characters/hero/lufia-d-attack.png"
+}
+
 class Party {
-  constructor(context, image, startHeight, srcWidth, attackState) {
+  
+
+  constructor(context, image, heroAttackImage, startHeight, srcWidth, attackState) {
     this.context = context;
     this.image = image;
+    this.heroAttackImage = heroAttackImage;
+    
     this.x = 0;
     this.y = startHeight;
     this.srcWidth = srcWidth;
@@ -10,7 +21,7 @@ class Party {
     this.width = this.context.canvas.width;
     this.attackPower = 1;
     this.critChance = 5;
-    setInterval(this.changeSprite(), 1000);
+    console.log(this);
     
   }
 
@@ -31,44 +42,24 @@ class Party {
     
   }
 
+  heroIdle() {
+    this.attackState = false;
+  }
+
   draw(heroTag) {
     if (!this.attackState) {
       this.context.clearRect(0, 0, this.width, this.height);
       this.context.drawImage(this.image, this.x, this.y);
     } else {
-      this.drawAttack(heroTag);
+      this.drawAttack();
     }
     this.drawStats();
     
   }
 
-  drawAttack(hero) {
-    const heroAttackA = new Image();
-    const heroAttackB = new Image();
-    const heroAttackC = new Image();
-    const heroAttackD = new Image();
-
-    heroAttackA.src = "../assets/images/characters/hero/lufia-a-attack.png";
-    heroAttackB.src = "../assets/images/characters/hero/lufia-b-attack.png";
-    heroAttackC.src = "../assets/images/characters/hero/lufia-c-attack.png";
-    heroAttackD.src = "../assets/images/characters/hero/lufia-d-attack.png";
-
-    if (hero === 'a') {
-      this.context.clearRect(0, 0, this.width, this.height);
-      this.context.drawImage(heroAttackA, this.x, this.y);
-    } else if (hero === 'b') {
-      this.context.clearRect(0, 0, this.width, this.height);
-      this.context.drawImage(heroAttackB, this.x, this.y);
-    } else if (hero === 'c') {
-      this.context.clearRect(0, 0, this.width, this.height);
-      this.context.drawImage(heroAttackC, this.x, this.y);
-    } else if (hero === 'd') {
-      this.context.clearRect(0, 0, this.width, this.height);
-      this.context.drawImage(heroAttackD, this.x, this.y);
-    } 
-    
-    
-    this.attackState = false;
+  drawAttack() {
+    this.context.clearRect(0, 0, this.width, this.height);
+    this.context.drawImage(this.heroAttackImage, this.x, this.y);
   }
 
 

@@ -53,10 +53,12 @@ class Game {
 
   bindKeyHandlers() {
     this.gameCanvas.addEventListener('keydown', (e) => this.keyboardTap(e));
+    this.gameCanvas.addEventListener('keyup', (e) => this.keyboardTapRelease(e));
 
   }
 
   keyboardTap(e) {
+    if (e.repeat) { return }
     switch(e.key) {
       case 'a':
         this.player.tap(this.heroA.fetchPower());
@@ -82,6 +84,24 @@ class Game {
         return this.heroC.upgradeStr();
       case 'v':
         return this.heroD.upgradeStr();
+      }
+  }
+
+  keyboardTapRelease(e) {
+    if (e.repeat) { return }
+    switch (e.key) {
+      case 'a':
+        this.heroA.heroIdle();
+        break;
+      case 's':
+        this.heroB.heroIdle();
+        break;
+      case 'd':
+        this.heroC.heroIdle();
+        break;
+      case 'f':
+        this.heroD.heroIdle();
+        break;
     }
   }
 
@@ -130,11 +150,20 @@ class Game {
     heroIdleB.src = "../assets/images/characters/hero/lufia-b-idle.png";
     heroIdleC.src = "../assets/images/characters/hero/lufia-c-idle.png";
     heroIdleD.src = "../assets/images/characters/hero/lufia-d-idle.png";
+
+    const heroAttackA = new Image();
+    const heroAttackB = new Image();
+    const heroAttackC = new Image();
+    const heroAttackD = new Image();
+    heroAttackA.src = "../assets/images/characters/hero/lufia-a-attack.png";
+    heroAttackB.src = "../assets/images/characters/hero/lufia-b-attack.png";
+    heroAttackC.src = "../assets/images/characters/hero/lufia-c-attack.png";
+    heroAttackD.src = "../assets/images/characters/hero/lufia-d-attack.png";
     
-    this.heroA = new Party(partyAContext, heroIdleA, 5, 95, false);
-    this.heroB = new Party(partyBContext, heroIdleB, 5, 95, false);
-    this.heroC = new Party(partyCContext, heroIdleC, 5, 95, false);
-    this.heroD = new Party(partyDContext, heroIdleD, 5, 95, false);
+    this.heroA = new Party(partyAContext, heroIdleA, heroAttackA, 5, 95, false);
+    this.heroB = new Party(partyBContext, heroIdleB, heroAttackB, 5, 95, false);
+    this.heroC = new Party(partyCContext, heroIdleC, heroAttackC, 5, 95, false);
+    this.heroD = new Party(partyDContext, heroIdleD, heroAttackD, 5, 95, false);
 
     this.heroA.draw('a');
     this.heroB.draw('b');
