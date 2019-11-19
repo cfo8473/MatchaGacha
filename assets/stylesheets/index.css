@@ -1,5 +1,5 @@
 body {
-  background: rgb(63, 63, 63);
+  background: rgb(76, 87, 76);
   color: white;
 }
 
@@ -16,7 +16,7 @@ body {
   text-align: center;
 }
 
-.tea-canvas {
+.game-canvas-container {
   position: relative;
   border: 0;
   height: 432;
@@ -68,4 +68,22 @@ body {
 #hill-canvas {
   position: absolute;
   z-index: 9;
+}
+
+.party-canvas-container {
+  position: relative;
+  border: 0;
+  height: 432;
+  width: 768;
+  margin: 0 auto;
+
+}
+
+#party-member-canvas {
+  margin-left: 0px;
+  margin-top: 4px;
+  margin-right: 0px;
+  padding: 0px;
+  background: white;
+  display: inline-block;
 }
