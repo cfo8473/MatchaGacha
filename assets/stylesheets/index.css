@@ -1,0 +1,71 @@
+body {
+  background: rgb(51, 51, 51);
+  color: white;
+}
+
+/* main {
+  justify-content: center;
+  margin-left: 0 auto;
+  
+} */
+
+.tea-buttons {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tea-canvas {
+  position: relative;
+  border: 0;
+  height: 216;
+  width: 384;
+  margin: 0 auto;
+}
+
+.tap-button {
+  justify-content: center;
+  display: inline-block;
+}
+
+.tap-power {
+  text-align: center;
+}
+
+#game-canvas {
+  position: absolute;
+  border: 1px solid white;
+  z-index: 9;
+  outline: none;
+}
+
+#mountains-canvas {
+  position: absolute;
+  z-index: 3;
+}
+
+#background-mountains-canvas {
+  position: absolute;
+  z-index: 2;
+}
+
+#cloud-layer-a-canvas {
+  position: absolute;
+  z-index: 88;
+}
+
+#cloud-layer-c-canvas {
+  position: absolute;
+  z-index: 6;
+}
+
+#sky-canvas {
+  position: absolute;
+  z-index: 0;
+}
+
+#hill-canvas {
+  position: absolute;
+  z-index: 9;
+}
