@@ -79,12 +79,12 @@ class Game {
       cloudLayerA.src = '../assets/images/layers/clouds_front_fc.png';
       cloudLayerC.src = '../assets/images/layers/clouds_mid_fc.png';
     
-      this.hill = new Scroller(hillContext, hill, -8, 384, 0);
-      this.sky = new Scroller(skyContext, sky, -5, 384, 0);
-      this.mountains = new Scroller(mountainsContext, mountains, -15, 384, 0.2);
-      this.backgroundMountains = new Scroller(backgroundMountainsContext, backgroundMountains, -15, 384, 0.3);
-      this.cloudLayerA = new Scroller(cloudLayerContextA, cloudLayerA, 0, 384, 0.2);
-      this.cloudLayerC = new Scroller(cloudLayerContextC, cloudLayerC, -10, 384, 0.6)
+      this.hill = new Scroller(hillContext, hill, -8, 768, 0);
+      this.sky = new Scroller(skyContext, sky, -5, 768, 0);
+      this.mountains = new Scroller(mountainsContext, mountains, -15, 768, 0.2);
+      this.backgroundMountains = new Scroller(backgroundMountainsContext, backgroundMountains, -15, 768, 0.3);
+      this.cloudLayerA = new Scroller(cloudLayerContextA, cloudLayerA, 0, 768, 0.2);
+      this.cloudLayerC = new Scroller(cloudLayerContextC, cloudLayerC, -10, 768, 0.6)
   }
 
   draw() {
