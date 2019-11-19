@@ -28,6 +28,8 @@ class Game {
       // Tap.tapMethods(this.player);
 
       this.draw = this.draw.bind(this);
+      this.drawPartyFrames = this.drawPartyFrames.bind(this);
+
       this.drawBackground(
         hillContext,
         skyContext,
@@ -52,16 +54,29 @@ class Game {
   }
 
   keyboardTap(e) {
-    if (e.key === 'a' || e.key === 's' || e.key === 'd' || e.key === 'f') {
-      this.player.tap();
+    if (e.key === 'a') {
+      this.player.tap(this.heroA.fetchPower());
+      this.heroA.heroAttackAnimation();
+    } else if (e.key === 's') {
+      this.player.tap(this.heroB.fetchPower());
+      this.heroB.heroAttackAnimation();
+    } else if (e.key === 'd') {
+      this.player.tap(this.heroC.fetchPower());
+      this.heroC.heroAttackAnimation();
+    } else if (e.key === 'f') {
+      this.player.tap(this.heroD.fetchPower());
+      this.heroD.heroAttackAnimation();
     }
 
-    if (e.key === 'r') {
-      this.player.upgradeTap(1);
-    }
-
-    if (e.key === 't') {
-      this.player.upgradeIncome(1);
+    switch(e.key) {
+      case 'z':
+        return this.heroA.upgradeStr();
+      case 'x':
+        return this.heroB.upgradeStr();
+      case 'c':
+        return this.heroC.upgradeStr();
+      case 'v':
+        return this.heroD.upgradeStr();
     }
   }
 
@@ -97,21 +112,19 @@ class Game {
   }
 
   drawParty(partyAContext, partyBContext, partyCContext, partyDContext) {
-    const heroAIdle = new Image();
-    heroAIdle.src = "../assets/images/characters/hero/lufia-a-idle.png";
-    this.heroA = new Party(partyAContext, heroAIdle, 5, 95);
-
-    const heroBIdle = new Image();
-    heroBIdle.src = "../assets/images/characters/hero/lufia-b-idle.png";
-    this.heroB = new Party(partyBContext, heroBIdle, 5, 95);
-
-    const heroCIdle = new Image();
-    heroCIdle.src = "../assets/images/characters/hero/lufia-c-idle.png";
-    this.heroC = new Party(partyCContext, heroCIdle, 5, 95);
-
-    const heroDIdle = new Image();
-    heroDIdle.src = "../assets/images/characters/hero/lufia-d-idle.png";
-    this.heroD = new Party(partyDContext, heroDIdle, 5, 95);
+    const heroIdleA = new Image();
+    const heroIdleB = new Image();
+    const heroIdleC = new Image();
+    const heroIdleD = new Image();
+    heroIdleA.src = "../assets/images/characters/hero/lufia-a-idle.png";
+    heroIdleB.src = "../assets/images/characters/hero/lufia-b-idle.png";
+    heroIdleC.src = "../assets/images/characters/hero/lufia-c-idle.png";
+    heroIdleD.src = "../assets/images/characters/hero/lufia-d-idle.png";
+    
+    this.heroA = new Party(partyAContext, heroIdleA, 5, 95, false);
+    this.heroB = new Party(partyBContext, heroIdleB, 5, 95, false);
+    this.heroC = new Party(partyCContext, heroIdleC, 5, 95, false);
+    this.heroD = new Party(partyDContext, heroIdleD, 5, 95, false);
   }
 
   draw() {
@@ -128,15 +141,27 @@ class Game {
     this.backgroundMountains.draw();
 
     // party  member draw
-    this.heroA.draw();
-    this.heroB.draw();
-    this.heroC.draw();
-    this.heroD.draw();
+
+    
+    // this.heroA.draw();
 
     this.gameCanvas.focus();
     
 
     // party canvas draw
+    this.heroA.draw('a');
+    this.heroB.draw('b');
+    this.heroC.draw('c');
+    this.heroD.draw('d');
+  }
+
+  drawPartyFrames() {
+    requestAnimationFrame(this.drawPartyFrames);
+    this.heroA.draw('a');
+    this.heroB.draw('b');
+    this.heroC.draw('c');
+    this.heroD.draw('d');
+
   }
 
 }
