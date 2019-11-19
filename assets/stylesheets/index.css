@@ -60,6 +60,11 @@ body {
   z-index: 6;
 }
 
+#boss-layer-c-canvas {
+  position: absolute;
+  z-index: 6;
+}
+
 #sky-canvas {
   position: absolute;
   z-index: 0;

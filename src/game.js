@@ -2,6 +2,7 @@ const Player = require('./player');
 const Tap = require('./tap');
 const Scroller = require('./scroller');
 const Party = require('./party');
+const Boss = require('./boss');
 
 class Game {
   constructor(
@@ -13,7 +14,8 @@ class Game {
             cloudLayerContextC, 
             hillContext,
             skyContext,
-            partyCanvasGroupContext
+            partyCanvasGroupContext,
+            bossLayerContextC
             ) 
     {
       this.context = context;
@@ -36,7 +38,8 @@ class Game {
         mountainsContext,
         backgroundMountainsContext,
         cloudLayerContextA,
-        cloudLayerContextC
+        cloudLayerContextC,
+        bossLayerContextC
       );
 
       this.drawParty(
@@ -54,21 +57,23 @@ class Game {
   }
 
   keyboardTap(e) {
-    if (e.key === 'a') {
-      this.player.tap(this.heroA.fetchPower());
-      this.heroA.heroAttackAnimation();
-    } else if (e.key === 's') {
-      this.player.tap(this.heroB.fetchPower());
-      this.heroB.heroAttackAnimation();
-    } else if (e.key === 'd') {
-      this.player.tap(this.heroC.fetchPower());
-      this.heroC.heroAttackAnimation();
-    } else if (e.key === 'f') {
-      this.player.tap(this.heroD.fetchPower());
-      this.heroD.heroAttackAnimation();
-    }
-
     switch(e.key) {
+      case 'a':
+        this.player.tap(this.heroA.fetchPower());
+        this.heroA.heroAttackAnimation();
+        break;
+      case 's':
+        this.player.tap(this.heroB.fetchPower());
+        this.heroB.heroAttackAnimation();
+        break;
+      case 'd':
+        this.player.tap(this.heroC.fetchPower());
+        this.heroC.heroAttackAnimation();
+        break;
+      case 'f':
+        this.player.tap(this.heroD.fetchPower());
+        this.heroD.heroAttackAnimation();
+        break;
       case 'z':
         return this.heroA.upgradeStr();
       case 'x':
@@ -87,6 +92,7 @@ class Game {
     backgroundMountainsContext,
     cloudLayerContextA,
     cloudLayerContextC,
+    bossLayerContextC
     ) {
 
       const hill = new Image();
@@ -95,6 +101,8 @@ class Game {
       const backgroundMountains = new Image();
       const cloudLayerA = new Image();
       const cloudLayerC = new Image();
+
+      const bossLayerC = new Image();
     
       hill.src = "../assets/images/layers/hill.png";
       sky.src = "../assets/images/layers/sky_fc.png";
@@ -102,6 +110,7 @@ class Game {
       backgroundMountains.src = '../assets/images/layers/far_mountains_fc.png';
       cloudLayerA.src = '../assets/images/layers/clouds_front_fc.png';
       cloudLayerC.src = '../assets/images/layers/clouds_mid_fc.png';
+      bossLayerC.src = '../assets/images/characters/bosses/mana-beast-idle.png';
     
       this.hill = new Scroller(hillContext, hill, -8, 768, 0);
       this.sky = new Scroller(skyContext, sky, -5, 768, 0);
@@ -109,6 +118,7 @@ class Game {
       this.backgroundMountains = new Scroller(backgroundMountainsContext, backgroundMountains, -15, 768, 0.3);
       this.cloudLayerA = new Scroller(cloudLayerContextA, cloudLayerA, 0, 768, 0.2);
       this.cloudLayerC = new Scroller(cloudLayerContextC, cloudLayerC, -10, 768, 0.6)
+      this.bossLayerC = new Boss(bossLayerContextC, bossLayerC, 110, 768, 0.2)
   }
 
   drawParty(partyAContext, partyBContext, partyCContext, partyDContext) {
@@ -125,6 +135,11 @@ class Game {
     this.heroB = new Party(partyBContext, heroIdleB, 5, 95, false);
     this.heroC = new Party(partyCContext, heroIdleC, 5, 95, false);
     this.heroD = new Party(partyDContext, heroIdleD, 5, 95, false);
+
+    this.heroA.draw('a');
+    this.heroB.draw('b');
+    this.heroC.draw('c');
+    this.heroD.draw('d');
   }
 
   draw() {
@@ -140,6 +155,8 @@ class Game {
     this.mountains.draw();
     this.backgroundMountains.draw();
 
+    
+
     // party  member draw
 
     
@@ -153,6 +170,13 @@ class Game {
     this.heroB.draw('b');
     this.heroC.draw('c');
     this.heroD.draw('d');
+
+    // boss draw
+    this.bossLayerC.draw();
+
+
+
+
   }
 
   drawPartyFrames() {

@@ -37,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   const partyCanvasGroup = [partyCanvasContextA, partyCanvasContextB, partyCanvasContextC, partyCanvasContextD];
 
-
+  const bossLayerCanvasC = document.getElementById('boss-layer-c-canvas');
+  const bossLayerContextC = bossLayerCanvasC.getContext('2d');
 
 
   const game = new Game(
@@ -49,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function() {
     cloudLayerContextC,
     hillContext,
     skyContext,
-    partyCanvasGroup
+    partyCanvasGroup,
+    bossLayerContextC
   );
   game.draw();
   

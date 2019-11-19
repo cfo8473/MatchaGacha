@@ -10,7 +10,12 @@ class Party {
     this.width = this.context.canvas.width;
     this.attackPower = 1;
     this.critChance = 5;
+    setInterval(this.changeSprite(), 1000);
     
+  }
+
+  changeSprite() {
+    console.log(this.image);
   }
 
   fetchPower() {
@@ -23,6 +28,7 @@ class Party {
 
   heroAttackAnimation() {
     this.attackState = true;
+    
   }
 
   draw(heroTag) {
