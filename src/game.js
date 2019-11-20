@@ -6,6 +6,9 @@ const Boss = require('./boss');
 const Controls = require('./controls');
 const Menu = require('./menu');
 
+//bosses
+const DongDong = require('./bosses/dongdong');
+
 class Game {
   constructor(options)  {
     this.context = options.context;
@@ -24,6 +27,8 @@ class Game {
     this.drawBackground(options);
     this.drawParty(partyUI[0], partyUI[1], partyUI[2], partyUI[3]);
 
+    this.initializeBosses(options);
+  
     Tap.tapMethods({
       player: this.player,
       heroA: this.heroA,
@@ -32,6 +37,10 @@ class Game {
       heroD: this.heroD,
       boss: this.bossLayerC
     });
+  }
+
+  initializeBosses(options) {
+    this.dongdong = new DongDong(this, options.frontBoss);
   }
 
   drawBackground(options) {
@@ -45,7 +54,7 @@ class Game {
     const bossLayerC = new Image();
     console.log(hill);
   
-    hill.src = "../assets/images/layers/hill.png";
+    hill.src = "../assets/images/layers/smallhill.png";
     sky.src = "../assets/images/layers/sky_fc.png";
     mountains.src = '../assets/images/layers/grassy_mountains_fc.png';
     backgroundMountains.src = '../assets/images/layers/far_mountains_fc.png';
@@ -195,7 +204,8 @@ class Game {
     this.heroD.draw('d');
 
     // boss draw
-    this.bossLayerC.draw();
+    // this.bossLayerC.draw();
+    this.dongdong.draw();
 
     //menu
     if (this.menu.open){

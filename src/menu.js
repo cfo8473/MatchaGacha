@@ -14,15 +14,22 @@ class Menu {
 
     if (!this.open) {
       this.canvas.clearRect(0,0,888,888);
+      document.getElementById("menu-canvas").style.zIndex = "1"; 
+    } else {
+      document.getElementById("menu-canvas").style.zIndex = "4"; 
     }
   }
 
   draw() {
     this.canvas.clearRect(0, 0, 888, 888);
-    this.game.context.font = "50px Arial";
-    this.game.context.fillStyle = 'white';
+    this.canvas.font = "50px Arial";
+    this.canvas.fillStyle = 'white';
     
     this.canvas.drawImage(this.menu,  83, 40);
+    this.canvas.fillText("MONEY", 135, 250);
+    this.canvas.fillText("GIVE ME MONEY", 135, 120);
+    this.canvas.fillText("PAYPAL BELOW", 120, 300);
+    
   }
 }
 
