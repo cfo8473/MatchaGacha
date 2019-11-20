@@ -21,21 +21,13 @@ class Boss {
   }
 
   takeDamage(partyMember) {
-
-    // start frame
     this.bossFrames = 1;
-    // this.context.clearRect(0, 0, this.width, this.height);
-    // this.context.drawImage(damaged, this.x, this.y);
-
     if (Math.random() >= (1 - (partyMember.critChance * 0.01))) {
       console.log("CRITICAL!")
       this.hitPoints -= partyMember.attackPower * 2;
     } else {
       this.hitPoints -= partyMember.attackPower;
     }
-
-
-  
     // debug death
     if ( this.hitPoints <= 0 ) {
       this.death();
@@ -53,38 +45,25 @@ class Boss {
 
   changeSprite() {
     let random = Math.floor((Math.random() * 3) + 1)-1;
-    // console.log(random)
-
-    //condtional for boss dmg
-    // console.log(this.bossFrames);
-
-    // if (this.bossFrames > 0) {
-    //   return this.image.src = "../assets/images/characters/bosses/mana-beast-idle3-damaged.png";
-    // } else {
-
-      switch(random) {
-        case 0:
-          return this.image.src = "../assets/images/characters/bosses/mana-beast-idle.png";
-        case 1:
-          return this.image.src = "../assets/images/characters/bosses/mana-beast-idle2.png";
-        case 2:
-          return this.image.src = "../assets/images/characters/bosses/mana-beast-idle3.png";
-      // }
+    
+    switch(random) {
+      case 0:
+        return this.image.src = "../assets/images/characters/bosses/mana-beast-idle.png";
+      case 1:
+        return this.image.src = "../assets/images/characters/bosses/mana-beast-idle2.png";
+      case 2:
+        return this.image.src = "../assets/images/characters/bosses/mana-beast-idle3.png";
     }
       
     
   }
 
   shift() {
-    // console.log(this.y);
     let shiftValue = this.flySpeed;
     if (this.y <= 80) {
       this.flyUp = true;
     }
      else if (this.y >= 125) {
-      //  console.log("TOO FAR")
-      //  console.log("this.y");
-      //  console.log(shiftValue);
       this.flyUp = false;
     }
     
@@ -124,12 +103,6 @@ class Boss {
       }
     }
 
-    // this.context.font = "20px Arial";
-    // this.context.fillStyle = 'red';
-    // this.context.fillText("SDFSFD", this.x + 560, this.y + 320);
-    
-    // this.context.drawImage(this.image, this.x + this.srcWidth, this.y);
-    
     const hitPoints = `HP: ${this.hitPoints}`;
 
     this.context.font = "20px Arial";

@@ -4,22 +4,22 @@ class Party {
   constructor(options) {
     this.context = options.context;
     this.image = options.idleImage;
+    this.height = this.context.canvas.height;
+    this.width = this.context.canvas.width;
+    this.x = 0;
+    this.y = 0;
+
+    // images
     this.heroAttackImage = options.attackImage;
     this.heroPrepImage = options.prepImage;
     this.keyDown = options.heroKeyDown;
     this.keyUp = options.heroKeyUp;
-    this.x = 0;
-    this.y = options.startHeight;
-    this.srcWidth = options.srcWidth;
-    this.attackState = false;
-    this.height = this.context.canvas.height;
-    this.width = this.context.canvas.width;
+    
+    //stats
     this.attackFrames = 0;
     this.attackPower = 1;
-    this.critChance = 5;
-    
-    console.log(this);
-    
+    this.critChance = 5;    
+    this.attackState = false;
   }
 
   changeSprite() {
@@ -57,9 +57,7 @@ class Party {
   }
 
   drawAttack() {
-    // console.log(this.attackFrames);
-    if (this.attackFrames > 3)
-    {
+    if (this.attackFrames > 3) {
       this.context.drawImage(this.heroPrepImage, this.x, this.y);
       this.context.drawImage(this.keyDown, 14, 55);
     } else {
@@ -70,8 +68,6 @@ class Party {
   }
 
   drawStats() {
-    const width = this.context.canvas.width;
-    const height = this.context.canvas.height;
     const attackStat = `ATK ${this.attackPower}`;
     const criticalStat = `CRIT ${this.critChance}%`;
     this.context.font = "10px Arial";

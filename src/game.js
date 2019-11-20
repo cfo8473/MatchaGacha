@@ -4,6 +4,7 @@ const Scroller = require('./scroller');
 const Party = require('./party');
 const Boss = require('./boss');
 const Controls = require('./controls');
+const Menu = require('./menu');
 
 class Game {
   constructor(options)  {
@@ -11,18 +12,14 @@ class Game {
     this.gameCanvas = options.gameCanvas;
     this.gameCanvas.setAttribute("tabindex", 0);
     const { partyUI } = options;
+
+    this.menu = new Menu(this, options.menu);
     
     this.player = new Player();
 
     this.controls = new Controls(this);
-    this.controls.bindKeyHandlers(this.gameCanvas);
-    
 
-    // this.bindKeyHandlers();
-    // this.keyboardTap = this.keyboardTap.bind(this);
-  
     this.draw = this.draw.bind(this);
-    // this.drawPartyFrames = this.drawPartyFrames.bind(this);
 
     this.drawBackground(options);
     this.drawParty(partyUI[0], partyUI[1], partyUI[2], partyUI[3]);
@@ -35,25 +32,6 @@ class Game {
       heroD: this.heroD,
       boss: this.bossLayerC
     });
-  }
-
-  
-
-  keyboardTapRelease(e) {
-    switch (e.key) {
-      case 'a':
-        this.heroA.heroIdle();
-        break;
-      case 's':
-        this.heroB.heroIdle();
-        break;
-      case 'd':
-        this.heroC.heroIdle();
-        break;
-      case 'f':
-        this.heroD.heroIdle();
-        break;
-    }
   }
 
   drawBackground(options) {
@@ -84,7 +62,7 @@ class Game {
     this.bossLayerC = new Boss(options.frontBoss, bossLayerC, 110, 768, 0.2, this.player)
   }
 
-  drawParty(partyAContext, partyBContext, partyCContext, partyDContext) {
+  drawParty(partyA, partyB, partyC, partyD) {
     const heroIdleA = new Image();
     const heroIdleB = new Image();
     const heroIdleC = new Image();
@@ -131,47 +109,39 @@ class Game {
     heroKeyUpD.src = "../assets/images/keys/f-up.png";
 
     let heroOptionsA = {
-      context: partyAContext,
+      context: partyA,
       idleImage: heroIdleA,
       prepImage: heroPrepA,
       attackImage: heroAttackA,
       heroKeyDown: heroKeyDownA,
       heroKeyUp: heroKeyUpA,
-      startHeight: 5,
-      srcWidth: 95
     }
 
     let heroOptionsB = {
-      context: partyBContext,
+      context: partyB,
       idleImage: heroIdleB,
       prepImage: heroPrepB,
       attackImage: heroAttackB,
       heroKeyDown: heroKeyDownB,
       heroKeyUp: heroKeyUpB,
-      startHeight: 5,
-      srcWidth: 95
     }
 
     let heroOptionsC = {
-      context: partyCContext,
+      context: partyC,
       idleImage: heroIdleC,
       prepImage: heroPrepC,
       attackImage: heroAttackC,
       heroKeyDown: heroKeyDownC,
       heroKeyUp: heroKeyUpC,
-      startHeight: 5,
-      srcWidth: 95
     }
 
     let heroOptionsD = {
-      context: partyDContext,
+      context: partyD,
       idleImage: heroIdleD,
       prepImage: heroPrepD,
       attackImage: heroAttackD,
       heroKeyDown: heroKeyDownD,
       heroKeyUp: heroKeyUpD,
-      startHeight: 5,
-      srcWidth: 95
     }
     
     this.heroA = new Party(heroOptionsA);
@@ -184,30 +154,26 @@ class Game {
 
   draw() {
     requestAnimationFrame(this.draw);
+    this.gameCanvas.focus();
   
     this.autoAttackFrames -= 1;
     //debug auto
     if (this.autoAttackFrames === 150) {
-      this.player.tap(this.heroA.fetchPower());
       this.heroA.heroAttackAnimation();
       this.bossLayerC.takeDamage(this.heroA);
     } else if (this.autoAttackFrames === 100) {
-      this.player.tap(this.heroB.fetchPower());
       this.heroB.heroAttackAnimation();
       this.bossLayerC.takeDamage(this.heroB);
     } else if (this.autoAttackFrames === 50) {
-      this.player.tap(this.heroC.fetchPower());
       this.heroC.heroAttackAnimation();
       this.bossLayerC.takeDamage(this.heroC);
     } else if (this.autoAttackFrames === 0) {
       this.autoAttackFrames = 200;
-      this.player.tap(this.heroD.fetchPower());
       this.heroD.heroAttackAnimation();
       this.bossLayerC.takeDamage(this.heroD);
     }
 
     
-
 
     // temporary stat display
     this.player.drawTapPower(this.context);
@@ -220,11 +186,8 @@ class Game {
     this.mountains.draw();
     this.backgroundMountains.draw();
 
-    // this.heroA.draw();
-
-    this.gameCanvas.focus();
     
-
+    
     // party canvas draw
     this.heroA.draw('a');
     this.heroB.draw('b');
@@ -234,17 +197,11 @@ class Game {
     // boss draw
     this.bossLayerC.draw();
 
-
-
-
-  }
-
-  drawPartyFrames() {
-    requestAnimationFrame(this.drawPartyFrames);
-    this.heroA.draw('a');
-    this.heroB.draw('b');
-    this.heroC.draw('c');
-    this.heroD.draw('d');
+    //menu
+    if (this.menu.open){
+      this.menu.draw();
+    }
+    
   }
 
 }

@@ -3,6 +3,7 @@ const Game = require('./game');
 class Controls {
   constructor(game) {
     this.game = game;
+    this.bindKeyHandlers();
   }
 
   bindKeyHandlers() {
@@ -14,25 +15,23 @@ class Controls {
     if (e.repeat) { return }
     switch (e.key) {
       case 'a':
-        this.game.player.tap(this.game.heroA.fetchPower());
         this.game.heroA.heroAttackAnimation();
         this.game.bossLayerC.takeDamage(this.game.heroA);
         break;
       case 's':
-        this.game.player.tap(this.game.heroB.fetchPower());
         this.game.heroB.heroAttackAnimation();
         this.game.bossLayerC.takeDamage(this.game.heroB);
         break;
       case 'd':
-        this.game.player.tap(this.game.heroC.fetchPower());
         this.game.heroC.heroAttackAnimation();
         this.game.bossLayerC.takeDamage(this.game.heroC);
         break;
       case 'f':
-        this.game.player.tap(this.game.heroD.fetchPower());
         this.game.heroD.heroAttackAnimation();
         this.game.bossLayerC.takeDamage(this.game.heroD);
         break;
+      case 'h':
+        return this.game.menu.toggleMenu();
       case 'z':
         return this.game.heroA.upgradeStr();
       case 'x':

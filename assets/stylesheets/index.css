@@ -45,10 +45,7 @@ body {
   outline: none;
 }
 
-#menu-canvas {
-  position: absolute;
-  border: 1px solid white;
-}
+
 
 #mountains-canvas {
   position: absolute;
@@ -72,7 +69,7 @@ body {
 
 #boss-layer-c-canvas {
   position: absolute;
-  z-index: 6;
+  z-index: 7;
 }
 
 #sky-canvas {
@@ -156,4 +153,9 @@ body {
 }
 #party-member-canvas-d:hover {
   background: #406063ab;
+}
+
+#menu-canvas {
+  position: absolute;
+  z-index: 411;
 }
