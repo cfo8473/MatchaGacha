@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // environment contexts
   const hill = document.getElementById('hill-canvas').getContext('2d');
   const sky = document.getElementById('sky-canvas').getContext('2d');
+  const fuji = document.getElementById('fuji-canvas').getContext('2d');
   const cloudLayerA = document.getElementById('cloud-layer-a-canvas').getContext('2d');
   const cloudLayerC = document.getElementById('cloud-layer-c-canvas').getContext('2d');
   const mountains = document.getElementById('mountains-canvas').getContext('2d');
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
     backCloudLayer: cloudLayerC,
     hill: hill,
     sky: sky,
+    fuji: fuji,
     frontBoss: bossLayerC,
     partyUI: partyGroup,
     menu: menu

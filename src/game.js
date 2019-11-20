@@ -29,6 +29,7 @@ class Game {
 
     this.initializeBosses(options);
   
+    this.boss = this.dongdong;
     Tap.tapMethods({
       player: this.player,
       heroA: this.heroA,
@@ -43,9 +44,19 @@ class Game {
     this.dongdong = new DongDong(this, options.frontBoss);
   }
 
+  bossDeath() {
+    
+    //testing, not DRY
+    delete this.dongdong;
+    console.log("dead boss debug");
+    this.boss = new DongDong(this. options.frontBoss);
+    console.log(this.boss);
+  }
+
   drawBackground(options) {
     const hill = new Image();
     const sky = new Image();
+    const fuji = new Image();
     const mountains = new Image();
     const backgroundMountains = new Image();
     const cloudLayerA = new Image();
@@ -54,16 +65,20 @@ class Game {
     const bossLayerC = new Image();
     console.log(hill);
   
-    hill.src = "../assets/images/layers/smallhill.png";
+    // hill.src = "../assets/images/layers/smallhill.png";
+    hill.src = "../assets/images/layers/hill.png";
     sky.src = "../assets/images/layers/sky_fc.png";
+    fuji.src = "../assets/images/layers/fuji.png";
     mountains.src = '../assets/images/layers/grassy_mountains_fc.png';
     backgroundMountains.src = '../assets/images/layers/far_mountains_fc.png';
     cloudLayerA.src = '../assets/images/layers/clouds_front_fc.png';
     cloudLayerC.src = '../assets/images/layers/clouds_mid_fc.png';
     bossLayerC.src = '../assets/images/characters/bosses/mana-beast-idle.png';
   
+
     this.hill = new Scroller(options.hill, hill, -8, 768, 0);
     this.sky = new Scroller(options.sky, sky, -5, 768, 0);
+    this.fuji = new Scroller(options.fuji, fuji, 24, 1468, 0.1);
     this.mountains = new Scroller(options.mountains, mountains, -15, 768, 0.2);
     this.backgroundMountains = new Scroller(options.backgroundMountains, backgroundMountains, -15, 768, 0.3);
     this.cloudLayerA = new Scroller(options.frontCloudLayer, cloudLayerA, 0, 768, 0.2);
@@ -169,17 +184,17 @@ class Game {
     //debug auto
     if (this.autoAttackFrames === 150) {
       this.heroA.heroAttackAnimation();
-      this.bossLayerC.takeDamage(this.heroA);
+      this.boss.takeDamage(this.heroA);
     } else if (this.autoAttackFrames === 100) {
       this.heroB.heroAttackAnimation();
-      this.bossLayerC.takeDamage(this.heroB);
+      this.boss.takeDamage(this.heroB);
     } else if (this.autoAttackFrames === 50) {
       this.heroC.heroAttackAnimation();
-      this.bossLayerC.takeDamage(this.heroC);
+      this.boss.takeDamage(this.heroC);
     } else if (this.autoAttackFrames === 0) {
       this.autoAttackFrames = 200;
       this.heroD.heroAttackAnimation();
-      this.bossLayerC.takeDamage(this.heroD);
+      this.boss.takeDamage(this.heroD);
     }
 
     
@@ -190,6 +205,7 @@ class Game {
     // main canvas parallax draw
     this.hill.draw();
     this.sky.draw();
+    this.fuji.draw();
     this.cloudLayerA.draw();
     this.cloudLayerC.draw();
     this.mountains.draw();
@@ -205,13 +221,13 @@ class Game {
 
     // boss draw
     // this.bossLayerC.draw();
-    this.dongdong.draw();
+    this.boss.draw();
 
     //menu
     if (this.menu.open){
       this.menu.draw();
     }
-    
+
   }
 
 }

@@ -16,19 +16,19 @@ class Controls {
     switch (e.key) {
       case 'a':
         this.game.heroA.heroAttackAnimation();
-        this.game.bossLayerC.takeDamage(this.game.heroA);
+        this.game.boss.takeDamage(this.game.heroA);
         break;
       case 's':
         this.game.heroB.heroAttackAnimation();
-        this.game.bossLayerC.takeDamage(this.game.heroB);
+        this.game.boss.takeDamage(this.game.heroB);
         break;
       case 'd':
         this.game.heroC.heroAttackAnimation();
-        this.game.bossLayerC.takeDamage(this.game.heroC);
+        this.game.boss.takeDamage(this.game.heroC);
         break;
       case 'f':
         this.game.heroD.heroAttackAnimation();
-        this.game.bossLayerC.takeDamage(this.game.heroD);
+        this.game.boss.takeDamage(this.game.heroD);
         break;
       case 'h':
         return this.game.menu.toggleMenu();
@@ -40,6 +40,9 @@ class Controls {
         return this.game.heroC.upgradeStr();
       case 'v':
         return this.game.heroD.upgradeStr();
+      //debug keys
+      case 'p':
+        return console.log(this.game.boss);
     }
   }
 

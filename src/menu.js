@@ -4,7 +4,7 @@ class Menu {
     this.canvas = canvas;
     this.open = false;
     this.menu = new Image();
-    this.menu.src = "../assets/images/ui/menu-big.png";
+    this.menu.src = "../assets/images/ui/menu-blue-big.png";
     console.log(canvas);
     console.log(game);
   }
@@ -16,7 +16,7 @@ class Menu {
       this.canvas.clearRect(0,0,888,888);
       document.getElementById("menu-canvas").style.zIndex = "1"; 
     } else {
-      document.getElementById("menu-canvas").style.zIndex = "4"; 
+      document.getElementById("menu-canvas").style.zIndex = "1001"; 
     }
   }
 
@@ -26,9 +26,8 @@ class Menu {
     this.canvas.fillStyle = 'white';
     
     this.canvas.drawImage(this.menu,  83, 40);
-    this.canvas.fillText("MONEY", 135, 250);
-    this.canvas.fillText("GIVE ME MONEY", 135, 120);
-    this.canvas.fillText("PAYPAL BELOW", 120, 300);
+    this.canvas.fillText("debug", 135, 250);
+   
     
   }
 }

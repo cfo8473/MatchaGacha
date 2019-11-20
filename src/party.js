@@ -31,7 +31,7 @@ class Party {
   }
 
   upgradeStr() {
-    this.attackPower += 1;
+    this.attackPower += 55;
   }
 
   heroAttackAnimation() {
@@ -49,6 +49,7 @@ class Party {
     if (this.attackFrames === 0) {
       this.context.drawImage(this.image, this.x, this.y);
       this.context.drawImage(this.keyUp, 14, 55);
+      this.attackState = false;
     } else if (this.attackFrames > 0 ) {
       this.drawAttack();
       this.attackFrames -= 1;
@@ -72,8 +73,12 @@ class Party {
     const criticalStat = `CRIT ${this.critChance}%`;
     this.context.font = "10px Arial";
     this.context.fillStyle = 'white';
+    this.context.fillText("DEBUG INFO", 55, 20);
     this.context.fillText(attackStat, 135, 20);
     this.context.fillText(criticalStat, 135, 35);
+    this.context.fillText(this.image, 135, 50);
+    this.context.fillText(`FRAMES ${this.attackFrames}`, 135, 65);
+    this.context.fillText(`ATK ${this.attackState}`, 135, 80);
   }
 }
 

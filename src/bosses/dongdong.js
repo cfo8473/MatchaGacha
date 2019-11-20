@@ -5,6 +5,8 @@ const dongDongSizes = {
   RUN_LEFT_HEIGHT: 485,
   PHASE_WIDTH: 761,
   PHASE_HEIGHT: 1200,
+  DEAD_WIDTH: 925,
+  DEAD_HEIGHT: 1600,
 }
 
 class DongDong {
@@ -15,14 +17,14 @@ class DongDong {
     // console.log(bossCanvas);
     // console.log(game);
     // console.log(bossCanvas);
+    this.hitPoints = 2000;
     this.x = 500;
     this.y = -30;
-
+    this.bossFrames = 0;
     this.canvas = bossCanvas;
     this.canvasWidth = 768;
+    this.frameRate = 5;
     this.game = game;
-    this.size = 6;
-    this.pos = {x: 0, y: 0};
     this.speed = 4;
     this.image = new Image();
     this.image.src = '../assets/images/characters/bosses/dongdong/dong-run-sprite-sheet-left-big.png';
@@ -35,6 +37,8 @@ class DongDong {
     this.phaseFrames = 0;
     this.step = 0;
     this.frame = 0;
+    this.deathStatus = false;
+    this.deathFrames = 0;
 
   }
 
@@ -47,19 +51,18 @@ class DongDong {
       this.hitPoints -= partyMember.attackPower;
     }
     // debug death
-    if (this.hitPoints <= 0) {
-      this.death();
-    }
+    
+    // console.log(this.hitPoints);
   }
 
-  // death() {
-  //   // temporary death
-  //   this.hitPoints += 1000;
-  //   this.x = 200;
-  //   this.y = 60;
+  death() {
+    
+    this.deathStatus = true;
+    // temporary death
+    this.game.bossDeath();
 
-  //   this.player.freeCurrency += 40000;
-  // }
+    this.game.player.freeCurrency += 40000;
+  }
 
   // changeSprite() {
   //   let random = Math.floor((Math.random() * 3) + 1) - 1;
@@ -96,25 +99,53 @@ class DongDong {
 
     this.step += 1;
 
-    if (this.step > 5){
+    if (this.step > this.frameRate){
       this.step = 0;
       this.frame += 1;
       
     }
 
-    if (this.frame > 9) {
+    if (this.frame > 9 ) {
       this.frame = 0 ;
       
     }
 
   }
 
+  deathAnimation() {
+    document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
+    this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-dead.png';
+    this.frameRate = 35;
+    // console.log(this.x);
+    this.width = dongDongSizes.DEAD_WIDTH;
+    this.height = dongDongSizes.DEAD_HEIGHT;
+    this.y = -54;
+   
+  }
+
   shift() {
     // console.log(this.x)
     // console.log(this.phaseFrames);
     // console.log(this.phase);
+    // console.log(this.deathStatus);
 
-    if (this.phase === 2 ) {
+    console.log(this.image.src);
+    if (this.deathStatus) {
+      this.y = -54;
+      
+      if (this.x >= -120) {
+        document.getElementById("boss-layer-c-canvas").style.zIndex = "33";
+        this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-dead.png';
+        this.width = dongDongSizes.DEAD_WIDTH;
+        this.height = dongDongSizes.DEATH_HEIGHT;
+        this.x -= this.speed;
+        
+        this.speed = 3;
+      } else {
+        this.speed = 0;
+        this.deathAnimation();
+      }
+    } else if (this.phase === 2 ) {
 
       if (this.x >= 120) {
         this.x -= 2;
@@ -145,6 +176,10 @@ class DongDong {
       document.getElementById("boss-layer-c-canvas").style.zIndex = "5";
       this.y = -40; 
       this.phase += 1
+      if (this.hitPoints <= 0) {
+        this.frameRate = 0;
+        this.death();
+      }
       this.speed = -(this.speed);
     } 
     else if (this.x <= -this.width) {
@@ -168,12 +203,16 @@ class DongDong {
   draw() {
     this.update();
     this.shift();
+    
     // requestAnimationFrame(this.draw);
 
     // console.log(this.canvas);
     // console.log(this.bossFrames);
+
+
     this.canvas.clearRect(0, 0, 800, 800);
     this.canvas.save();
+    
     this.canvas.drawImage(
       this.image,
       this.width * this.frame,
