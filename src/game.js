@@ -3,100 +3,46 @@ const Tap = require('./tap');
 const Scroller = require('./scroller');
 const Party = require('./party');
 const Boss = require('./boss');
+const Controls = require('./controls');
 
 class Game {
-  constructor(
-            context,
-            gameCanvas, 
-            mountainsContext, 
-            backgroundMountainsContext,
-            cloudLayerContextA, 
-            cloudLayerContextC, 
-            hillContext,
-            skyContext,
-            partyCanvasGroupContext,
-            bossLayerContextC
-            ) 
-    {
-      this.context = context;
-      this.gameCanvas = gameCanvas;
-      this.gameCanvas.setAttribute("tabindex", 0);
-      
-      this.player = new Player();
-
-      this.bindKeyHandlers();
-      this.keyboardTap = this.keyboardTap.bind(this);
+  constructor(options)  {
+    this.context = options.context;
+    this.gameCanvas = options.gameCanvas;
+    this.gameCanvas.setAttribute("tabindex", 0);
+    const { partyUI } = options;
     
-      // Tap.tapMethods(this.player);
+    this.player = new Player();
 
-      this.draw = this.draw.bind(this);
-      this.drawPartyFrames = this.drawPartyFrames.bind(this);
+    this.controls = new Controls(this);
+    this.controls.bindKeyHandlers(this.gameCanvas);
+    
 
-      this.drawBackground(
-        hillContext,
-        skyContext,
-        mountainsContext,
-        backgroundMountainsContext,
-        cloudLayerContextA,
-        cloudLayerContextC,
-        bossLayerContextC
-      );
+    // this.bindKeyHandlers();
+    // this.keyboardTap = this.keyboardTap.bind(this);
+  
+    this.draw = this.draw.bind(this);
+    // this.drawPartyFrames = this.drawPartyFrames.bind(this);
 
-      this.drawParty(
-        partyCanvasGroupContext[0],
-        partyCanvasGroupContext[1],
-        partyCanvasGroupContext[2],
-        partyCanvasGroupContext[3],
-      )
+    this.drawBackground(options);
+    this.drawParty(partyUI[0], partyUI[1], partyUI[2], partyUI[3]);
 
-
+    Tap.tapMethods({
+      player: this.player,
+      heroA: this.heroA,
+      heroB: this.heroB,
+      heroC: this.heroC,
+      heroD: this.heroD,
+      boss: this.bossLayerC
+    });
   }
 
-  bindKeyHandlers() {
-    this.gameCanvas.addEventListener('keydown', (e) => this.keyboardTap(e));
-    this.gameCanvas.addEventListener('keyup', (e) => this.keyboardTapRelease(e));
-
-  }
-
-  keyboardTap(e) {
-    if (e.repeat) { return }
-    switch(e.key) {
-      case 'a':
-        this.player.tap(this.heroA.fetchPower());
-        this.heroA.heroAttackAnimation();
-        this.bossLayerC.takeDamage(this.heroA);
-        break;
-      case 's':
-        this.player.tap(this.heroB.fetchPower());
-        this.heroB.heroAttackAnimation();
-        this.bossLayerC.takeDamage(this.heroB);
-        break;
-      case 'd':
-        this.player.tap(this.heroC.fetchPower());
-        this.heroC.heroAttackAnimation();
-        this.bossLayerC.takeDamage(this.heroC);
-        break;
-      case 'f':
-        this.player.tap(this.heroD.fetchPower());
-        this.heroD.heroAttackAnimation();
-        this.bossLayerC.takeDamage(this.heroD);
-        break;
-      case 'z':
-        return this.heroA.upgradeStr();
-      case 'x':
-        return this.heroB.upgradeStr();
-      case 'c':
-        return this.heroC.upgradeStr();
-      case 'v':
-        return this.heroD.upgradeStr();
-      }
-  }
+  
 
   keyboardTapRelease(e) {
-    if (e.repeat) { return }
     switch (e.key) {
       case 'a':
-        // this.heroA.heroIdle();
+        this.heroA.heroIdle();
         break;
       case 's':
         this.heroB.heroIdle();
@@ -110,40 +56,32 @@ class Game {
     }
   }
 
-  drawBackground(
-    hillContext,
-    skyContext,
-    mountainsContext, 
-    backgroundMountainsContext,
-    cloudLayerContextA,
-    cloudLayerContextC,
-    bossLayerContextC
-    ) {
+  drawBackground(options) {
+    const hill = new Image();
+    const sky = new Image();
+    const mountains = new Image();
+    const backgroundMountains = new Image();
+    const cloudLayerA = new Image();
+    const cloudLayerC = new Image();
 
-      const hill = new Image();
-      const sky = new Image();
-      const mountains = new Image();
-      const backgroundMountains = new Image();
-      const cloudLayerA = new Image();
-      const cloudLayerC = new Image();
-
-      const bossLayerC = new Image();
-    
-      hill.src = "../assets/images/layers/hill.png";
-      sky.src = "../assets/images/layers/sky_fc.png";
-      mountains.src = '../assets/images/layers/grassy_mountains_fc.png';
-      backgroundMountains.src = '../assets/images/layers/far_mountains_fc.png';
-      cloudLayerA.src = '../assets/images/layers/clouds_front_fc.png';
-      cloudLayerC.src = '../assets/images/layers/clouds_mid_fc.png';
-      bossLayerC.src = '../assets/images/characters/bosses/mana-beast-idle.png';
-    
-      this.hill = new Scroller(hillContext, hill, -8, 768, 0);
-      this.sky = new Scroller(skyContext, sky, -5, 768, 0);
-      this.mountains = new Scroller(mountainsContext, mountains, -15, 768, 0.2);
-      this.backgroundMountains = new Scroller(backgroundMountainsContext, backgroundMountains, -15, 768, 0.3);
-      this.cloudLayerA = new Scroller(cloudLayerContextA, cloudLayerA, 0, 768, 0.2);
-      this.cloudLayerC = new Scroller(cloudLayerContextC, cloudLayerC, -10, 768, 0.6)
-      this.bossLayerC = new Boss(bossLayerContextC, bossLayerC, 110, 768, 0.2, this.player)
+    const bossLayerC = new Image();
+    console.log(hill);
+  
+    hill.src = "../assets/images/layers/hill.png";
+    sky.src = "../assets/images/layers/sky_fc.png";
+    mountains.src = '../assets/images/layers/grassy_mountains_fc.png';
+    backgroundMountains.src = '../assets/images/layers/far_mountains_fc.png';
+    cloudLayerA.src = '../assets/images/layers/clouds_front_fc.png';
+    cloudLayerC.src = '../assets/images/layers/clouds_mid_fc.png';
+    bossLayerC.src = '../assets/images/characters/bosses/mana-beast-idle.png';
+  
+    this.hill = new Scroller(options.hill, hill, -8, 768, 0);
+    this.sky = new Scroller(options.sky, sky, -5, 768, 0);
+    this.mountains = new Scroller(options.mountains, mountains, -15, 768, 0.2);
+    this.backgroundMountains = new Scroller(options.backgroundMountains, backgroundMountains, -15, 768, 0.3);
+    this.cloudLayerA = new Scroller(options.frontCloudLayer, cloudLayerA, 0, 768, 0.2);
+    this.cloudLayerC = new Scroller(options.backCloudLayer, cloudLayerC, -10, 768, 0.6)
+    this.bossLayerC = new Boss(options.frontBoss, bossLayerC, 110, 768, 0.2, this.player)
   }
 
   drawParty(partyAContext, partyBContext, partyCContext, partyDContext) {
@@ -155,7 +93,6 @@ class Game {
     heroIdleB.src = "../assets/images/characters/hero/lufia-b-idle.png";
     heroIdleC.src = "../assets/images/characters/hero/lufia-c-idle.png";
     heroIdleD.src = "../assets/images/characters/hero/lufia-d-idle.png";
-
 
     const heroPrepA = new Image();
     const heroPrepB = new Image();

@@ -3,57 +3,41 @@ const Game = require("./game.js");
 
 document.addEventListener("DOMContentLoaded", function() {
   const gameCanvas = document.getElementById("game-canvas");
-  const canvasContext = gameCanvas.getContext("2d");
+  const context = document.getElementById("game-canvas").getContext('2d');
 
-  const hill = document.getElementById('hill-canvas');
-  const hillContext = hill.getContext('2d');
+  // environment contexts
+  const hill = document.getElementById('hill-canvas').getContext('2d');
+  const sky = document.getElementById('sky-canvas').getContext('2d');
+  const cloudLayerA = document.getElementById('cloud-layer-a-canvas').getContext('2d');
+  const cloudLayerC = document.getElementById('cloud-layer-c-canvas').getContext('2d');
+  const mountains = document.getElementById('mountains-canvas').getContext('2d');
+  const backgroundMountains = document.getElementById('background-mountains-canvas').getContext('2d');
 
-  const sky = document.getElementById('sky-canvas');
-  const skyContext = sky.getContext('2d');
+  // party UI contexts
+  const partyA = document.getElementById('party-member-canvas-a').getContext('2d');
+  const partyB = document.getElementById('party-member-canvas-b').getContext('2d');
+  const partyC = document.getElementById('party-member-canvas-c').getContext('2d');
+  const partyD = document.getElementById('party-member-canvas-d').getContext('2d');
+  const partyGroup = [partyA, partyB, partyC, partyD];
 
-  const cloudLayerCanvasA = document.getElementById('cloud-layer-a-canvas');
-  const cloudLayerContextA = cloudLayerCanvasA.getContext('2d');
+  // enemy contexts
+  const bossLayerC = document.getElementById('boss-layer-c-canvas').getContext('2d');
 
-  const cloudLayerCanvasC = document.getElementById('cloud-layer-c-canvas');
-  const cloudLayerContextC = cloudLayerCanvasC.getContext('2d');
+  const options = {
+    context: context,
+    gameCanvas: gameCanvas,
+    mountains: mountains,
+    backgroundMountains: backgroundMountains,
+    frontCloudLayer: cloudLayerA,
+    backCloudLayer: cloudLayerC,
+    hill: hill,
+    sky: sky,
+    frontBoss: bossLayerC,
+    partyUI: partyGroup
+    
+  };
 
-  const mountainsCanvas = document.getElementById('mountains-canvas');
-  const mountainsCanvasContext = mountainsCanvas.getContext('2d');
+  const game = new Game(options);
 
-  const backgroundMountainsCanvas = document.getElementById('background-mountains-canvas');
-  const backgroundMountainsCanvasContext = backgroundMountainsCanvas.getContext('2d');
-
-  const partyCanvasA = document.getElementById('party-member-canvas-a');
-  const partyCanvasContextA = partyCanvasA.getContext('2d');
-
-  const partyCanvasB = document.getElementById('party-member-canvas-b');
-  const partyCanvasContextB = partyCanvasB.getContext('2d');
-
-  const partyCanvasC = document.getElementById('party-member-canvas-c');
-  const partyCanvasContextC = partyCanvasC.getContext('2d');
-
-  const partyCanvasD = document.getElementById('party-member-canvas-d');
-  const partyCanvasContextD = partyCanvasD.getContext('2d');
-
-  const partyCanvasGroup = [partyCanvasContextA, partyCanvasContextB, partyCanvasContextC, partyCanvasContextD];
-
-  const bossLayerCanvasC = document.getElementById('boss-layer-c-canvas');
-  const bossLayerContextC = bossLayerCanvasC.getContext('2d');
-
-
-  const game = new Game(
-    canvasContext, 
-    gameCanvas, 
-    mountainsCanvasContext,
-    backgroundMountainsCanvasContext,
-    cloudLayerContextA,
-    cloudLayerContextC,
-    hillContext,
-    skyContext,
-    partyCanvasGroup,
-    bossLayerContextC
-  );
   game.draw();
-  
-  // const gameView = new GameView(game, context);
 })

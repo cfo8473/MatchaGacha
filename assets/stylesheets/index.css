@@ -1,6 +1,11 @@
 body {
   background: rgb(58, 58, 58);
   color: white;
+  user-select: none;
+}
+
+:focus {
+  outline: none;
 }
 
 /* main {
@@ -38,6 +43,11 @@ body {
   border: 1px solid white;
   z-index: 9;
   outline: none;
+}
+
+#menu-canvas {
+  position: absolute;
+  border: 1px solid white;
 }
 
 #mountains-canvas {
@@ -95,6 +105,8 @@ body {
   border-radius: 5px;
   display: inline-block;
   border: 1px solid #D1E7C2;
+  cursor: pointer;
+
 }
 
 #party-member-canvas-b {
@@ -106,6 +118,7 @@ body {
   border-radius: 5px;
   display: inline-block;
   border: 1px solid #D1E7C2;
+  cursor: pointer;
 }
 
 #party-member-canvas-c {
@@ -117,6 +130,7 @@ body {
   border-radius: 5px;
   display: inline-block;
   border: 1px solid #D1E7C2;
+  cursor: pointer;
 }
 
 #party-member-canvas-d {
@@ -128,4 +142,18 @@ body {
   border-radius: 5px;
   display: inline-block;
   border: 1px solid #D1E7C2;
+  cursor: pointer;
+}
+
+#party-member-canvas-a:hover {
+  background: #406063ab;
+}
+#party-member-canvas-b:hover {
+  background: #406063ab;
+}
+#party-member-canvas-c:hover {
+  background: #406063ab;
+}
+#party-member-canvas-d:hover {
+  background: #406063ab;
 }

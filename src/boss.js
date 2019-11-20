@@ -14,6 +14,7 @@ class Boss {
     this.height = this.context.canvas.height;
     this.width = this.context.canvas.width;
     this.player = player;
+    this.hit = false;
     
     
     setInterval(() => this.changeSprite(), 400);
@@ -102,6 +103,13 @@ class Boss {
     
     if (this.bossFrames > 0 ) {
       this.image.src = "../assets/images/characters/bosses/mana-beast-idle3-damaged.png";
+      if (this.hit) {
+        this.y += 4;
+        this.hit = !this.hit;
+      } else {
+        this.y -= 4;
+        this.hit = !this.hit;
+      }
       this.bossFrames -= 1;
     } else {
       this.shift();

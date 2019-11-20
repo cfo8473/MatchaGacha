@@ -9,7 +9,7 @@ class Player {
   }
 
   tap(value) {
-    this.freeCurrency += value;
+    // this.freeCurrency += value;
     // console.log(`FREE CURRENCY ${this.freeCurrency}`);
   }
 
