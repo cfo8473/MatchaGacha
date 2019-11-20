@@ -78,7 +78,7 @@ body {
 .party-canvas-container {
   position: relative;
   border: 0;
-  height: 432;
+  height: 132;
   width: 768;
   margin: 0 auto;
 
@@ -91,7 +91,7 @@ body {
   margin-top: 5px;
   margin-right: 0px;
   padding: 0px;
-  background: #a8d2d677;
+  background: #40606377;
   border-radius: 5px;
   display: inline-block;
   border: 1px solid #D1E7C2;
@@ -102,7 +102,7 @@ body {
   margin-top: 5px;
   margin-right: 0px;
   padding: 0px;
-  background: #a8d2d677;
+  background: #40606377;
   border-radius: 5px;
   display: inline-block;
   border: 1px solid #D1E7C2;
@@ -113,7 +113,7 @@ body {
   margin-top: 5px;
   margin-right: 0px;
   padding: 0px;
-  background: #a8d2d677;
+  background: #40606377;
   border-radius: 5px;
   display: inline-block;
   border: 1px solid #D1E7C2;
@@ -124,7 +124,7 @@ body {
   margin-top: 5px;
   margin-right: 0px;
   padding: 0px;
-  background: #a8d2d677;
+  background: #40606377;
   border-radius: 5px;
   display: inline-block;
   border: 1px solid #D1E7C2;

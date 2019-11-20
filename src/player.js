@@ -3,12 +3,14 @@ class Player {
     this.freeCurrency = 0;
     this.premiumCurrency = 0;
     this.passiveIncome = 1;
+
+    
     setInterval(() => this.income(), 1000);
   }
 
   tap(value) {
     this.freeCurrency += value;
-    console.log(`FREE CURRENCY ${this.freeCurrency}`);
+    // console.log(`FREE CURRENCY ${this.freeCurrency}`);
   }
 
   income() {
@@ -37,14 +39,16 @@ class Player {
     const width = context.canvas.width;
     const height = context.canvas.height;
     context.clearRect(0, 0, width, height);
-
-    const freeCurrency = `Currency: ${this.freeCurrency}`;
+    const freeCurrency = `${this.freeCurrency}`;
     const passiveIncome = `Income: ${this.passiveIncome}`;
 
     context.font = "15px Arial";
     context.fillStyle = 'white';
-    context.fillText(freeCurrency, 10, 20);
-    context.fillText(passiveIncome, 10, 60);
+    context.fillText(freeCurrency, 30, 22);
+    // context.fillText(passiveIncome, 10, 60);
+    const freeCurrencyIcon = new Image();
+    freeCurrencyIcon.src = "../assets/images/misc/gold-coin.png";
+    context.drawImage(freeCurrencyIcon, 0, 0);
   }
 
 
