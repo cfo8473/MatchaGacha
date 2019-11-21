@@ -38,7 +38,7 @@ class DongDong {
     this.step = 0;
     this.frame = 0;
     this.deathStatus = false;
-    this.deathFrames = 0;
+    this.deathFrames = 400;
 
   }
 
@@ -59,25 +59,10 @@ class DongDong {
     
     this.deathStatus = true;
     // temporary death
-    this.game.bossDeath();
 
     this.game.player.freeCurrency += 40000;
   }
 
-  // changeSprite() {
-  //   let random = Math.floor((Math.random() * 3) + 1) - 1;
-
-  //   switch (random) {
-  //     case 0:
-  //       return this.image.src = "../assets/images/characters/bosses/mana-beast-idle.png";
-  //     case 1:
-  //       return this.image.src = "../assets/images/characters/bosses/mana-beast-idle2.png";
-  //     case 2:
-  //       return this.image.src = "../assets/images/characters/bosses/mana-beast-idle3.png";
-  //   }
-
-
-  // }
 
   // shift() {
   //   let shiftValue = this.flySpeed;
@@ -102,24 +87,29 @@ class DongDong {
     if (this.step > this.frameRate){
       this.step = 0;
       this.frame += 1;
-      
     }
 
     if (this.frame > 9 ) {
       this.frame = 0 ;
-      
     }
 
   }
 
   deathAnimation() {
+    console.log(this.deathFrames);
+    this.deathFrames -= 1;
     document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
     this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-dead.png';
-    this.frameRate = 35;
+    this.frameRate = 55;
     // console.log(this.x);
     this.width = dongDongSizes.DEAD_WIDTH;
     this.height = dongDongSizes.DEAD_HEIGHT;
     this.y = -54;
+
+    if (this.deathFrames === 0) {
+      this.game.bossDeath();
+
+    }
    
   }
 
@@ -128,20 +118,24 @@ class DongDong {
     // console.log(this.phaseFrames);
     // console.log(this.phase);
     // console.log(this.deathStatus);
+    // console.log(`HP: ${this.hitPoints}`);
 
-    console.log(this.image.src);
+    // console.log(this.image.src);
     if (this.deathStatus) {
       this.y = -54;
       
+      // if dead and x position is returning from moving -> right
       if (this.x >= -120) {
-        document.getElementById("boss-layer-c-canvas").style.zIndex = "33";
+        // console.log(this.x)
+        this.frame = 0;
+        document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
         this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-dead.png';
         this.width = dongDongSizes.DEAD_WIDTH;
-        this.height = dongDongSizes.DEATH_HEIGHT;
-        this.x -= this.speed;
-        
+        this.height = dongDongSizes.DEAD_HEIGHT;
         this.speed = 3;
+        // up 
       } else {
+        
         this.speed = 0;
         this.deathAnimation();
       }
@@ -165,10 +159,7 @@ class DongDong {
       } else {
         this.speed = 0;
       }
-
-
-    }
-    else if (this.x >= (this.canvasWidth )) {
+    } else if (this.x >= (this.canvasWidth )) {
       
       this.width = dongDongSizes.RUN_LEFT_WIDTH;
       this.height = dongDongSizes.RUN_LEFT_HEIGHT;
@@ -181,8 +172,7 @@ class DongDong {
         this.death();
       }
       this.speed = -(this.speed);
-    } 
-    else if (this.x <= -this.width) {
+    } else if (this.x <= -this.width) {
       this.width = dongDongSizes.RUN_RIGHT_WIDTH;
       this.height = dongDongSizes.RUN_RIGHT_HEIGHT;
       this.x = -300;

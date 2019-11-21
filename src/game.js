@@ -11,6 +11,7 @@ const DongDong = require('./bosses/dongdong');
 
 class Game {
   constructor(options)  {
+    this.options = options;
     this.context = options.context;
     this.gameCanvas = options.gameCanvas;
     this.gameCanvas.setAttribute("tabindex", 0);
@@ -45,11 +46,11 @@ class Game {
   }
 
   bossDeath() {
-    
     //testing, not DRY
-    delete this.dongdong;
+    // delete this.dongdong;
+    this.dongdong = null;
     console.log("dead boss debug");
-    this.boss = new DongDong(this. options.frontBoss);
+    this.boss = new DongDong(this, this.options.frontBoss);
     console.log(this.boss);
   }
 
