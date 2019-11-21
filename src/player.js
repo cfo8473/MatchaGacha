@@ -47,7 +47,7 @@ class Player {
     context.fillText(freeCurrency, 30, 22);
     // context.fillText(passiveIncome, 10, 60);
     const freeCurrencyIcon = new Image();
-    freeCurrencyIcon.src = "../assets/images/misc/gold-coin.png";
+    freeCurrencyIcon.src = "../dist/assets/images/misc/gold-coin.png";
     context.drawImage(freeCurrencyIcon, 0, 0);
   }
 
