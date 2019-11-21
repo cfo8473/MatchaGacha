@@ -1,0 +1,184 @@
+body {
+  background: rgb(58, 58, 58);
+  color: white;
+  user-select: none;
+  background-image: url("../../assets/images/ui/sitebg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+:focus {
+  outline: none;
+}
+
+/* main {
+  justify-content: center;
+  margin-left: 0 auto;
+  
+} */
+
+.tea-buttons {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.game-canvas-container {
+  position: relative;
+  border: 0;
+  height: 432;
+  width: 768;
+  margin: 0 auto;
+}
+
+.tap-button {
+  justify-content: center;
+  display: inline-block;
+}
+
+.tap-power {
+  text-align: center;
+}
+
+#game-canvas {
+  position: absolute;
+  border: 2px solid #D1E7C2;
+  border-radius: 5px;
+  z-index: 9;
+  top: -1px;
+  left: -1px;
+  outline: none;
+}
+
+
+
+#mountains-canvas {
+  position: absolute;
+  z-index: 3;
+}
+
+#background-mountains-canvas {
+  position: absolute;
+  z-index: 2;
+}
+
+#cloud-layer-a-canvas {
+  position: absolute;
+  z-index: 88;
+}
+
+#cloud-layer-c-canvas {
+  position: absolute;
+  z-index: 6;
+}
+
+#boss-layer-c-canvas {
+  position: absolute;
+  z-index: 7;
+}
+
+#sky-canvas {
+  position: absolute;
+  z-index: 0;
+}
+
+#fuji-canvas {
+  position: absolute;
+  z-index: 1;
+}
+
+#hill-canvas {
+  position: absolute;
+  z-index: 9;
+}
+
+.party-canvas-container {
+  position: relative;
+  border: 0;
+  height: 132;
+  width: 768;
+  margin: 0 auto;
+
+}
+
+
+/* make dry */
+#party-member-canvas-a {
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-right: 0px;
+  padding: 1px;
+  border-radius: 5px;
+  display: inline-block;
+  /* border: 1px solid #D1E7C2; */
+  cursor: pointer;
+  background-image: url("../../assets/images/ui/menu-blue.png");
+  background-size: 100% 100%;
+
+}
+
+#party-member-canvas-b {
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-right: 0px;
+  padding: 1px;
+  background: #aed3835d;
+  border-radius: 5px;
+  display: inline-block;
+  /* border: 1px solid #D1E7C2; */
+  cursor: pointer;
+  background-image: url("../../assets/images/ui/menu-blue.png");
+  background-size: 100% 100%;
+}
+
+#party-member-canvas-c {
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-right: 0px;
+  padding: 1px;
+  background: #aed3835d;
+  border-radius: 5px;
+  display: inline-block;
+  /* border: 1px solid #D1E7C2; */
+  cursor: pointer;
+  background-image: url("../../assets/images/ui/menu-blue.png");
+  background-size: 100% 100%;
+}
+
+#party-member-canvas-d {
+  margin-left: 0px;
+  margin-top: 5px;
+  margin-right: 0px;
+  padding: 1px;
+  background: #aed3835d;
+  border-radius: 5px;
+  display: inline-block;
+  /* border: 1px solid #D1E7C2; */
+  cursor: pointer;
+  background-image: url("../../assets/images/ui/menu-blue.png");
+  background-size: 100% 100%;
+}
+
+#party-member-canvas-a:hover {
+  background-image: url("../../assets/images/ui/menu-blue-hover.png");
+
+  
+}
+#party-member-canvas-b:hover {
+  background-image: url("../../assets/images/ui/menu-blue-hover.png");
+
+}
+#party-member-canvas-c:hover {
+  background-image: url("../../assets/images/ui/menu-blue-hover.png");
+
+}
+#party-member-canvas-d:hover {
+  background-image: url("../../assets/images/ui/menu-blue-hover.png");
+
+}
+
+#menu-canvas {
+  position: absolute;
+  z-index: 411;
+}

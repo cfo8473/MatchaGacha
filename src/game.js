@@ -6,8 +6,11 @@ const Boss = require('./boss');
 const Controls = require('./controls');
 const Menu = require('./menu');
 
+
 //bosses
 const DongDong = require('./bosses/dongdong');
+const Alishar = require('./bosses/alishar');
+const Rage = require('./bosses/rage');
 
 class Game {
   constructor(options)  {
@@ -30,7 +33,8 @@ class Game {
 
     this.initializeBosses(options);
   
-    this.boss = this.dongdong;
+    this.randomBoss(options);
+
     Tap.tapMethods({
       player: this.player,
       heroA: this.heroA,
@@ -41,16 +45,36 @@ class Game {
     });
   }
 
+  randomBoss(options) {
+    let random = Math.floor((Math.random() * 3) + 1);
+
+    switch (random) {
+      case 1:
+        document.getElementById("boss-layer-c-canvas").style.zIndex = "5"; 
+        return this.boss = new DongDong(this, options.frontBoss);
+      case 2:
+        document.getElementById("boss-layer-c-canvas").style.zIndex = "2";
+        return this.boss = new Alishar(this, options.frontBoss);
+      case 3:
+        document.getElementById("boss-layer-c-canvas").style.zIndex = "9";
+        return this.boss = new Rage(this, options.frontBoss);
+    }
+  }
+
   initializeBosses(options) {
     this.dongdong = new DongDong(this, options.frontBoss);
+    this.alishar = new Alishar(this, options.frontBoss);
   }
 
   bossDeath() {
     //testing, not DRY
     // delete this.dongdong;
-    this.dongdong = null;
+
+    this.boss = null;
+
+    
     console.log("dead boss debug");
-    this.boss = new DongDong(this, this.options.frontBoss);
+    this.randomBoss(this.options);
     console.log(this.boss);
   }
 
@@ -66,15 +90,15 @@ class Game {
     const bossLayerC = new Image();
     console.log(hill);
   
-    // hill.src = "../dist/assets/images/layers/smallhill.png";
-    hill.src = "../dist/assets/images/layers/hill.png";
-    sky.src = "../dist/assets/images/layers/sky_fc.png";
-    fuji.src = "../dist/assets/images/layers/fuji.png";
-    mountains.src = '../dist/assets/images/layers/grassy_mountains_fc.png';
-    backgroundMountains.src = '../dist/assets/images/layers/far_mountains_fc.png';
-    cloudLayerA.src = '../dist/assets/images/layers/clouds_front_fc.png';
-    cloudLayerC.src = '../dist/assets/images/layers/clouds_mid_fc.png';
-    bossLayerC.src = '../dist/assets/images/characters/bosses/mana-beast-idle.png';
+    // hill.src = "../assets/images/layers/smallhill.png";
+    hill.src = "../assets/images/layers/hill.png";
+    sky.src = "../assets/images/layers/sky_fc.png";
+    fuji.src = "../assets/images/layers/fuji.png";
+    mountains.src = '../assets/images/layers/grassy_mountains_fc.png';
+    backgroundMountains.src = '../assets/images/layers/far_mountains_fc.png';
+    cloudLayerA.src = '../assets/images/layers/clouds_front_fc.png';
+    cloudLayerC.src = '../assets/images/layers/clouds_mid_fc.png';
+    bossLayerC.src = '../assets/images/characters/bosses/mana-beast-idle.png';
   
 
     this.hill = new Scroller(options.hill, hill, -8, 768, 0);
@@ -92,46 +116,46 @@ class Game {
     const heroIdleB = new Image();
     const heroIdleC = new Image();
     const heroIdleD = new Image();
-    heroIdleA.src = "../dist/assets/images/characters/hero/lufia-a-idle.png";
-    heroIdleB.src = "../dist/assets/images/characters/hero/lufia-b-idle.png";
-    heroIdleC.src = "../dist/assets/images/characters/hero/lufia-c-idle.png";
-    heroIdleD.src = "../dist/assets/images/characters/hero/lufia-d-idle.png";
+    heroIdleA.src = "../assets/images/characters/hero/lufia-a-idle.png";
+    heroIdleB.src = "../assets/images/characters/hero/lufia-b-idle.png";
+    heroIdleC.src = "../assets/images/characters/hero/lufia-c-idle.png";
+    heroIdleD.src = "../assets/images/characters/hero/lufia-d-idle.png";
 
     const heroPrepA = new Image();
     const heroPrepB = new Image();
     const heroPrepC = new Image();
     const heroPrepD = new Image();
-    heroPrepA.src = "../dist/assets/images/characters/hero/lufia-a-prep.png";
-    heroPrepB.src = "../dist/assets/images/characters/hero/lufia-b-prep.png";
-    heroPrepC.src = "../dist/assets/images/characters/hero/lufia-c-prep.png";
-    heroPrepD.src = "../dist/assets/images/characters/hero/lufia-d-prep.png";
+    heroPrepA.src = "../assets/images/characters/hero/lufia-a-prep.png";
+    heroPrepB.src = "../assets/images/characters/hero/lufia-b-prep.png";
+    heroPrepC.src = "../assets/images/characters/hero/lufia-c-prep.png";
+    heroPrepD.src = "../assets/images/characters/hero/lufia-d-prep.png";
 
     const heroAttackA = new Image();
     const heroAttackB = new Image();
     const heroAttackC = new Image();
     const heroAttackD = new Image();
-    heroAttackA.src = "../dist/assets/images/characters/hero/lufia-a-attack.png";
-    heroAttackB.src = "../dist/assets/images/characters/hero/lufia-b-attack.png";
-    heroAttackC.src = "../dist/assets/images/characters/hero/lufia-c-attack.png";
-    heroAttackD.src = "../dist/assets/images/characters/hero/lufia-d-attack.png";
+    heroAttackA.src = "../assets/images/characters/hero/lufia-a-attack.png";
+    heroAttackB.src = "../assets/images/characters/hero/lufia-b-attack.png";
+    heroAttackC.src = "../assets/images/characters/hero/lufia-c-attack.png";
+    heroAttackD.src = "../assets/images/characters/hero/lufia-d-attack.png";
 
     const heroKeyDownA = new Image();
     const heroKeyDownB = new Image();
     const heroKeyDownC = new Image();
     const heroKeyDownD = new Image();
-    heroKeyDownA.src = "../dist/assets/images/keys/a-down.png";
-    heroKeyDownB.src = "../dist/assets/images/keys/s-down.png";
-    heroKeyDownC.src = "../dist/assets/images/keys/d-down.png";
-    heroKeyDownD.src = "../dist/assets/images/keys/f-down.png";
+    heroKeyDownA.src = "../assets/images/keys/a-down.png";
+    heroKeyDownB.src = "../assets/images/keys/s-down.png";
+    heroKeyDownC.src = "../assets/images/keys/d-down.png";
+    heroKeyDownD.src = "../assets/images/keys/f-down.png";
 
     const heroKeyUpA = new Image();
     const heroKeyUpB = new Image();
     const heroKeyUpC = new Image();
     const heroKeyUpD = new Image();
-    heroKeyUpA.src = "../dist/assets/images/keys/a-up.png";
-    heroKeyUpB.src = "../dist/assets/images/keys/s-up.png";
-    heroKeyUpC.src = "../dist/assets/images/keys/d-up.png";
-    heroKeyUpD.src = "../dist/assets/images/keys/f-up.png";
+    heroKeyUpA.src = "../assets/images/keys/a-up.png";
+    heroKeyUpB.src = "../assets/images/keys/s-up.png";
+    heroKeyUpC.src = "../assets/images/keys/d-up.png";
+    heroKeyUpD.src = "../assets/images/keys/f-up.png";
 
     let heroOptionsA = {
       context: partyA,
@@ -228,6 +252,10 @@ class Game {
     if (this.menu.open){
       this.menu.draw();
     }
+
+    this.context.font = "20px Arial";
+    this.context.fillStyle = "red";
+    this.context.fillText(this.boss.hitPoints, 550, 50);
 
   }
 
