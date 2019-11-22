@@ -1,12 +1,18 @@
 class DamageText {
-  constructor(game, damage) {
+  constructor(game, damage, crit) {
     this.game = game;
     this.textFrames = 50;
     this.frame = 0;
-    this.x = this.game.boss.x + (this.game.boss.width / 2) + Math.floor((Math.random() * 44) + 1);;
-    this.y = this.game.boss.y + (this.game.boss.height / 3) + Math.floor((Math.random() * 44) + 1);;
+    this.crit = crit;
+
+    // console.log(this.game.gameCanvas.clientHeight);
+    // console.log(this.game.gameCanvas.clientWidth);
+    //minimum maximum blah formula
+    this.x = Math.min(Math.max(parseInt(this.game.boss.x + (this.game.boss.width / 2) + Math.floor((Math.random() * (this.game.gameCanvas.clientWidth * 0.10)) + 1)), 0), (this.game.gameCanvas.clientWidth * 0.95));
+    this.y = Math.min(Math.max(parseInt(this.game.boss.y + (this.game.boss.height / 3) + Math.floor((Math.random() * 44) + 1)), 200), 600);
+    // this.y = 
     this.text = damage;
-    console.log(this.text);
+    // console.log(this.text);
   }
 
   update() {
@@ -19,17 +25,20 @@ class DamageText {
 
   draw() {
     this.update();
-    this.game.context.fillStyle = 'yellow';
-    this.game.context.strokeStyle = 'black';
 
-    this.game.context.font = '22pt Verdana';
+    if (this.crit) {
+      this.game.context.fillStyle = 'red';
+      this.game.context.strokeStyle = 'black';
+      this.game.context.font = '24pt Arial Black';
+    } else {
+      this.game.context.fillStyle = 'yellow';
+      this.game.context.strokeStyle = 'black';
+      this.game.context.font = '15pt Arial Black';
+    }
+    
+    
     this.game.context.fillText(this.text, this.x, this.y);
     this.game.context.strokeText(this.text, this.x, this.y);
-
-    // this.game.context.strokeStyle = "31px Arial";
-    // this.game.context.fillText(this.text, this.x, this.y);
-    // this.game.context.strokeStyle = "30px Arial";
-    // this.game.context.fillText(this.text, this.x, this.y);
   }
 
 }

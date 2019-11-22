@@ -1,8 +1,8 @@
 const dongDongSizes = {
   RUN_RIGHT_WIDTH: 393,
   RUN_RIGHT_HEIGHT: 342,
-  RUN_LEFT_WIDTH: 545,
-  RUN_LEFT_HEIGHT: 885,
+  RUN_LEFT_WIDTH: 609,
+  RUN_LEFT_HEIGHT: 485,
   PHASE_WIDTH: 761,
   PHASE_HEIGHT: 1200,
   DEAD_WIDTH: 925,
@@ -11,30 +11,28 @@ const dongDongSizes = {
 
 const DmgText = require('../damage');
 
-class LootBox {
+class DongDong {
   constructor(game, bossCanvas) {
     // console.log(bossCanvas);
     // console.log(game);
     // console.log(bossCanvas); 
     this.maxHitPoints = game.level * game.monsterBaseHP;
     this.hitPoints = this.maxHitPoints;
-    this.x = 400;
+    this.x = 500;
     this.y = -30;
     this.bossFrames = 0;
     this.canvas = bossCanvas;
     this.canvasWidth = 768;
     this.frameRate = 5;
     this.game = game;
-    this.speed = 2;
+    this.speed = 4;
     this.image = new Image();
-    this.image.src = '../assets/images/characters/bosses/lootbox/lootbox.png';
+    this.image.src = '../assets/images/characters/bosses/dongdong/dong-run-sprite-sheet-left-big.png';
     this.width = dongDongSizes.RUN_LEFT_WIDTH;
     this.height = dongDongSizes.RUN_LEFT_HEIGHT;
 
 
-    this.flyUp = true;
-    this.flySpeed = this.speed;
-    this.shiftValue = this.speed;
+
     this.phase = 1;
     this.phaseFrames = 0;
     this.step = 0;
@@ -101,7 +99,7 @@ class LootBox {
       this.frame += 1;
     }
 
-    if (this.frame > 7) {
+    if (this.frame > 9) {
       this.frame = 0;
     }
 
@@ -127,53 +125,80 @@ class LootBox {
   }
 
   shift() {
-    console.log(this.phase);
-    if (this.phase === 2) {
-      this.image.src = '../assets/images/characters/bosses/lootbox/lootbox-phase.png';
-      if (this.phaseFrames <= 400) {
-        if (this.x >= 160) {
-          this.x -= 1;
+    // console.log(this.x)
+    // console.log(this.phaseFrames);
+    // console.log(this.phase);
+    // console.log(this.deathStatus);
+    // console.log(`HP: ${this.hitPoints}`);
 
-        }
-        this.phaseFrames += 1;
-        this.speed = 0;
-        this.y -= 0.5;
+    // console.log(this.image.src);
+    if (this.deathStatus) {
+      this.y = -54;
+
+      // if dead and x position is returning from moving -> right
+      if (this.x >= -120) {
+        // console.log(this.x)
+        this.frame = 0;
+        document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
+        this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-dead.png';
+        this.width = dongDongSizes.DEAD_WIDTH;
+        this.height = dongDongSizes.DEAD_HEIGHT;
+        this.speed = 3;
+        // up 
       } else {
-        this.phase = 0;
-        this.speed = 2;
+
+        this.speed = 0;
+        this.deathAnimation();
+      }
+    } else if (this.phase === 2) {
+
+      if (this.x >= 120) {
+        this.x -= 2;
+      }
+
+      this.y = -200;
+      this.phaseFrames += 1;
+      this.width = dongDongSizes.PHASE_WIDTH;
+      this.height = dongDongSizes.PHASE_HEIGHT;
+      this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-confront.png';
+      document.getElementById("boss-layer-c-canvas").style.zIndex = "8";
+
+      if (this.phaseFrames >= 760) {
         this.phaseFrames = 0;
+        this.phase = 0;
+        this.speed = 6;
+      } else {
+        this.speed = 0;
       }
-      
-    } else {
-      
-      let shiftValue = this.flySpeed;
-      if (this.y <= 10) {
-        this.flyUp = true;
-      }
-      else if (this.y >= 85) {
-        this.flyUp = false;
-      }
+    } else if (this.x >= (this.canvasWidth)) {
 
-      if (this.flyUp === true) {
-        this.y += shiftValue;
-      } else if (this.flyUp === false) {
-        this.y -= shiftValue;
+      this.width = dongDongSizes.RUN_LEFT_WIDTH;
+      this.height = dongDongSizes.RUN_LEFT_HEIGHT;
+      this.image.src = '../assets/images/characters/bosses/dongdong/dong-run-sprite-sheet-left-big.png';
+      document.getElementById("boss-layer-c-canvas").style.zIndex = "5";
+      this.y = -40;
+      this.phase += 1
+      if (this.hitPoints <= 0) {
+        this.frameRate = 0;
+        this.death();
       }
+      this.speed = -(this.speed);
+    } else if (this.x <= -this.width) {
+      this.width = dongDongSizes.RUN_RIGHT_WIDTH;
+      this.height = dongDongSizes.RUN_RIGHT_HEIGHT;
+      this.x = -300;
+      this.y = 0;
 
-      this.x -= this.speed;
-      if (this.x >= 400) {
-        this.image.src = '../assets/images/characters/bosses/lootbox/lootbox.png';
-        this.speed = -(this.speed)
-        this.phase += 1;
-      }
-      else if (this.x <= -25) {
-        this.image.src = '../assets/images/characters/bosses/lootbox/lootbox-right.png';
-        this.speed = -(this.speed)
-      }
+      this.speed = -(this.speed);
+      this.image.src = '../assets/images/characters/bosses/dongdong/dong-run-sprite-sheet-right-hills.png';
+      document.getElementById("boss-layer-c-canvas").style.zIndex = "3";
     }
-    
-  }
 
+
+    this.x += -(this.speed);
+
+
+  }
 
 
   draw() {
@@ -197,4 +222,4 @@ class LootBox {
   }
 }
 
-module.exports = LootBox;
+module.exports = DongDong;

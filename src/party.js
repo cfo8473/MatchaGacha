@@ -18,7 +18,7 @@ class Party {
     //stats
     this.attackFrames = 0;
     this.attackPower = 1;
-    this.critChance = 5;    
+    this.critChance = 10;    
     this.attackState = false;
   }
 

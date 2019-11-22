@@ -11,12 +11,16 @@ const Menu = require('./menu');
 const DongDong = require('./bosses/dongdong');
 const Alishar = require('./bosses/alishar');
 // const Rage = require('./bosses/rage');
+const Lion = require('./bosses/lion');
+const Lootbox = require('./bosses/lootbox');
 
 //limit breaks
 const TeaDrizzle = require('./artifacts/teadrizzle');
 const CaffeineRage = require('./artifacts/caffeinerage');
 const Omnibag = require('./artifacts/omnibag');
 const TeaSun = require('./artifacts/teasun');
+const TeaPaw = require('./artifacts/teapaw');
+
 
 class Game {
   constructor(options)  {
@@ -59,7 +63,7 @@ class Game {
   }
 
   randomBoss(options) {
-    let random = Math.floor((Math.random() * 2) + 1);
+    let random = Math.floor((Math.random() * 3) + 1);
     this.level += 1;
     if (this.level % 5 === 0 ) {
       this.monsterBaseHP * 1.20;
@@ -78,6 +82,10 @@ class Game {
       //   document.getElementById("boss-layer-c-canvas").style.zIndex = "9";
       //   this.boss = new Rage(this, options.frontBoss);
       //   break
+      case 3:
+        document.getElementById("boss-layer-c-canvas").style.zIndex = "7";
+        this.boss = new Lootbox(this, options.frontBoss);
+        break
     }
   }
 
@@ -100,7 +108,7 @@ class Game {
           this.limitBreak = new Omnibag(this, this.options.limitBreak);
           break;
         case 'sun':
-          this.limitBreak = new TeaSun(this, this.options.limitBreak);
+          this.limitBreak = new TeaPaw(this, this.options.limitBreak);
           break;
       }
     }
@@ -110,13 +118,16 @@ class Game {
 
   removeLimitBreak() {
     document.getElementById("limit-break-canvas").style.width = `768`;
+    let oldLimitBreak = this.limitBreak;
+    oldLimitBreak = null;
     this.limitBreak = null;
   }
 
   bossDeath() {
     //testing, not DRY
     // delete this.dongdong;
-
+    let oldBoss = this.boss;
+    oldBoss = null;
     this.boss = null;
 
     
@@ -137,7 +148,7 @@ class Game {
     const cloudLayerC = new Image();
 
     const bossLayerC = new Image();
-    console.log(hill);
+    // console.log(hill);
   
     // hill.src = "../assets/images/layers/smallhill.png";
     hill.src = "../assets/images/layers/hill.png";
@@ -287,14 +298,12 @@ class Game {
 
     
     if (this.damageTexts.length > 0) {
-      console.log(this.damageTexts);
+      // console.log(this.damageTexts);
       this.damageTexts.forEach ( dmgText => {
-        
-
-
         dmgText.draw();
         if (dmgText.textFrames <= 0) {
           this.damageTexts.shift();
+          dmgText = null;
         }
       });
     }
@@ -320,11 +329,9 @@ class Game {
       this.menu.draw();
     }
 
-    
-
     if (this.boss) {
       const currentHp = this.boss.hpPercentage();
-      console.log(currentHp);
+      // console.log(currentHp);
       this.context.strokeStyle = "rgba(0, 0, 0, 0.4)";
       this.context.rect(125, 26, 550, 24);
 

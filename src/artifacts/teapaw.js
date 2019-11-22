@@ -1,5 +1,5 @@
 const SIZES = {
-  CONFRONT_WIDTH: 600,
+  CONFRONT_WIDTH: 894,
   CONFRONT_HEIGHT: 885
 
 }
@@ -7,19 +7,19 @@ const SIZES = {
 class CaffeineRage {
   constructor(game, limitBreakCanvas) {
     console.log("CF loaded debug");
-    this.x = 70;
-    this.y = 110;
+    this.x = 0;
+    this.y = 10;
     this.canvas = limitBreakCanvas;
     this.canvasWidth = 768;
     this.frameRate = 4;
     this.game = game;
     this.image = new Image();
-    this.image.src = '../assets/images/limitbreak/greenteasun.png';
+    this.image.src = '../assets/images/limitbreak/teapaw3.png';
     this.width = SIZES.CONFRONT_WIDTH,
       this.height = SIZES.CONFRONT_HEIGHT
     this.frameUp = true;
     this.step = 0;
-    this.frame = 5;
+    this.frame = 0;
     this.phase = 0;
     this.frameUp = true;
 
@@ -67,17 +67,17 @@ class CaffeineRage {
     document.getElementById("cloud-layer-a-canvas").style.filter = "blur(7px)";
     document.getElementById("background-mountains-canvas").style.filter = "blur(7px)";
     document.getElementById("fuji-canvas").style.filter = "blur(7px)";
-    if (this.frame > 6) {
+    if (this.frame > 10) {
       this.frameUp = false;
     } else if (this.frame === 0) {
       this.frameUp = true;
     }
 
 
-    if (this.frame > 6) {
+    if (this.frame > 10) {
 
 
-      if (this.phase === 7) {
+      if (this.phase === 4) {
         document.getElementById("sky-canvas").style.filter = "brightness(100%)";
         document.getElementById("mountains-canvas").style.filter = "brightness(100%)";
         document.getElementById("background-mountains-canvas").style.filter = "brightness(100%)";
@@ -107,15 +107,18 @@ class CaffeineRage {
 
     }
 
-    if (this.frame >= 6) {
+    if (this.frame >= 0) {
       if (this.frame % 2 === 0) {
         document.getElementById("boss-layer-c-canvas").style.filter = "brightness(300%)";
       } else {
         document.getElementById("boss-layer-c-canvas").style.filter = "brightness(100%)";
       }
 
-      if (this.frame >= 0 && this.frame <= 6) {
-        this.game.autoAttackSpeed = 25;
+      if (this.frame >= 0 && this.frame <= 11) {
+        const currentBoss = this.game.boss;
+        currentBoss.takeDamageLimitBreak(this.game.heroD.attackPower * 1.5, this.game.heroB.critChance);
+        console.log(this.game.heroB.attackPower);
+
 
         // console.log(this.game.autoAttackFrames);
       }
