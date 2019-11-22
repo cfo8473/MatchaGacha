@@ -28,6 +28,7 @@ class Game {
     this.level = 1;
     this.monsterBaseHP = 1000;
     this.damageTexts = [];
+    this.limitBreak = null;
 
     this.autoAttackSpeed = 1;
     this.menu = new Menu(this, options.menu);
@@ -87,20 +88,23 @@ class Game {
 
   callLimitBreak(limitBreakName) {
     document.getElementById("limit-break-canvas").style.width = `768`;
-    switch(limitBreakName) {
-      case 'rage':
-        this.limitBreak = new CaffeineRage(this, this.options.limitBreak);
-        break;
-      case 'drizzle':
-        this.limitBreak = new TeaDrizzle(this, this.options.limitBreak);
-        break;
-      case 'omni':
-        this.limitBreak = new Omnibag(this, this.options.limitBreak);
-        break;
-      case 'sun':
-        this.limitBreak = new TeaSun(this, this.options.limitBreak);
-        break;
+    if (this.limitBreak === null ) {
+      switch (limitBreakName) {
+        case 'rage':
+          this.limitBreak = new CaffeineRage(this, this.options.limitBreak);
+          break;
+        case 'drizzle':
+          this.limitBreak = new TeaDrizzle(this, this.options.limitBreak);
+          break;
+        case 'omni':
+          this.limitBreak = new Omnibag(this, this.options.limitBreak);
+          break;
+        case 'sun':
+          this.limitBreak = new TeaSun(this, this.options.limitBreak);
+          break;
+      }
     }
+   
 
   }
 
@@ -285,7 +289,7 @@ class Game {
     if (this.damageTexts.length > 0) {
       console.log(this.damageTexts);
       this.damageTexts.forEach ( dmgText => {
-        this.context.fillStyle = "30px Arial";
+        
 
 
         dmgText.draw();
