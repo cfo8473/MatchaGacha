@@ -9,7 +9,7 @@ class DamageText {
     // console.log(this.game.gameCanvas.clientWidth);
     //minimum maximum blah formula
     this.x = Math.min(Math.max(parseInt(this.game.boss.x + (this.game.boss.width / 2) + Math.floor((Math.random() * (this.game.gameCanvas.clientWidth * 0.10)) + 1)), 0), (this.game.gameCanvas.clientWidth * 0.95));
-    this.y = Math.min(Math.max(parseInt(this.game.boss.y + (this.game.boss.height / 3) + Math.floor((Math.random() * 44) + 1)), 200), 600);
+    this.y = Math.min(Math.max(parseInt(this.game.boss.y + (this.game.boss.height / 4) + Math.floor((Math.random() * 44) + 1)), 200), 400);
     // this.y = 
     this.text = damage;
     // console.log(this.text);
