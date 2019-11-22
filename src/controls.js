@@ -1,4 +1,7 @@
 const Game = require('./game');
+const DongDong = require('./bosses/dongdong');
+const Alishar = require('./bosses/alishar');
+const Lootbox = require('./bosses/lootbox');
 
 class Controls {
   constructor(game) {
@@ -44,6 +47,17 @@ class Controls {
       //debug keys
       case 'p':
         return console.log(this.game.boss);
+      case 'j':
+        // this.game.bossDeath();
+        this.game.boss = new DongDong(this.game, this.game.options.frontBoss);
+        break;
+      case 'k':
+        // this.game.bossDeath();
+        return this.game.boss = new Alishar(this.game, this.game.options.frontBoss);
+      case 'l':
+        // this.game.boss Death();
+        return this.game.boss = new Lootbox(this.game, this.game.options.frontBoss);
+
       case 'q':
         // document.getElementById("limit-break-canvas").style.zIndex = "9999";
         document.getElementById("limit-break-canvas").style.zIndex = "9";

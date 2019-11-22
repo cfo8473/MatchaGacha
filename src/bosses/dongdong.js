@@ -47,12 +47,12 @@ class DongDong {
     if (Math.random() >= (1 - (partyMember.critChance * 0.01))) {
       console.log("CRITICAL!")
       this.hitPoints -= partyMember.attackPower * 2;
-      let damageText = new DmgText(this.game, partyMember.attackPower * 2);
+      let damageText = new DmgText(this.game, partyMember.attackPower * 2, true);
 
       this.game.damageTexts.push(damageText);
     } else {
       this.hitPoints -= partyMember.attackPower;
-      let damageText = new DmgText(this.game, partyMember.attackPower);
+      let damageText = new DmgText(this.game, partyMember.attackPower, false);
 
       this.game.damageTexts.push(damageText);
     }
@@ -61,11 +61,17 @@ class DongDong {
     // console.log(this.hitPoints);
   }
 
-  takeDamageLimitBreak(heroDamage) {
+  takeDamageLimitBreak(heroDamage, critChance) {
     this.hitPoints -= heroDamage;
-    let damageText = new DmgText(this.game, heroDamage);
-
+    let damageText;
+    if (Math.random() >= (1 - (critChance * 0.01))) {
+      console.log("JKLDFSDS");
+      damageText = new DmgText(this.game, (heroDamage * 1.5), true);
+    } else {
+      damageText = new DmgText(this.game, heroDamage, false);
+    }
     this.game.damageTexts.push(damageText);
+    
   }
 
   hpPercentage () {
@@ -83,23 +89,6 @@ class DongDong {
 
     this.game.player.freeCurrency += 40000;
   }
-
-
-  // shift() {
-  //   let shiftValue = this.flySpeed;
-  //   if (this.y <= 80) {
-  //     this.flyUp = true;
-  //   }
-  //   else if (this.y >= 125) {
-  //     this.flyUp = false;
-  //   }
-
-  //   if (this.flyUp === true) {
-  //     this.y += shiftValue;
-  //   } else if (this.flyUp === false) {
-  //     this.y -= shiftValue;
-  //   }
-  // }
 
   update () {
 
@@ -215,13 +204,6 @@ class DongDong {
   draw() {
     this.update();
     this.shift();
-    
-    // requestAnimationFrame(this.draw);
-
-    // console.log(this.canvas);
-    // console.log(this.bossFrames);
-
-
     this.canvas.clearRect(0, 0, 800, 800);
     this.canvas.save();
     

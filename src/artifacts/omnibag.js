@@ -15,13 +15,19 @@ class Omnibag {
     this.game = game;
     this.image = new Image();
     this.image.src = '../assets/images/limitbreak/omnibag.png';
+    this.canvasList = ["game-canvas", "menu-canvas", "hill-canvas", "sky-canvas", "fuji-canvas", "cloud-layer-a-canvas", "cloud-layer-c-canvas",
+      "boss-layer-c-canvas", "mountains-canvas", "background-mountains-canvas"];
     this.width = SIZES.CONFRONT_WIDTH,
-      this.height = SIZES.CONFRONT_HEIGHT
+    this.height = SIZES.CONFRONT_HEIGHT
     this.frameUp = true;
     this.step = 0;
     this.frame = 0;
     this.phase = 0;
     this.downPhase = 20;
+    this.canvasList.forEach((canvas) => {
+      document.getElementById(canvas).style.transition = "all 0.8s";
+
+    });
     document.getElementById("boss-layer-c-canvas").style.transition = "all 0.8s";
 
   }
@@ -57,30 +63,12 @@ class Omnibag {
 
     this.step += 1;
 
-    const canvasList = ["game-canvas", "menu-canvas", "hill-canvas", "sky-canvas", "fuji-canvas", "cloud-layer-a-canvas", "cloud-layer-c-canvas",
-    "boss-layer-c-canvas", "mountains-canvas", "background-mountains-canvas"];
-
-
-    
-    canvasList.forEach( (canvas) => {
+    this.canvasList.forEach( (canvas) => {
       document.getElementById(canvas).style.width = "50%";
       document.getElementById(canvas).style.top = "100px";
       document.getElementById(canvas).style.filter = "blur(2px)";
       document.getElementById(canvas).style.opacity = "0.8";
     });
-
-
-
-    // document.getElementById("sky-canvas").style.filter = "brightness(0%)";
-    // document.getElementById("mountains-canvas").style.filter = "brightness(0%)";
-    // document.getElementById("background-mountains-canvas").style.filter = "brightness(0%)";
-    // document.getElementById("fuji-canvas").style.filter = "brightness(0%)";
-    // document.getElementById("cloud-layer-c-canvas").style.filter = "brightness(0%)";
-    // document.getElementById("sky-caneeeeeeevas").style.filter = "blur(7px)";
-    // document.getElementById("mountains-canvas").style.filter = "blur(7px)";
-    // document.getElementById("background-mountains-canvas").style.filter = "blur(7px)";
-    // document.getElementById("fuji-canvas").style.filter = "blur(7px)";
-
 
 
     if (this.frame > 14) {
@@ -95,7 +83,7 @@ class Omnibag {
         document.getElementById("cloud-layer-c-canvas").style.filter = "brightness(100%)";
         
         
-        canvasList.forEach((canvas) => {
+        this.canvasList.forEach((canvas) => {
           document.getElementById(canvas).style.width = "100%";
           document.getElementById(canvas).style.top = "0px";
           document.getElementById(canvas).style.opacity = "1";
@@ -125,10 +113,10 @@ class Omnibag {
     if (this.frame >= 8) {
       if (this.frame % 2 === 0) {
         document.getElementById("boss-layer-c-canvas").style.filter = "brightness(300%)";
-        canvasList.forEach((canvas) => {
+        this.canvasList.forEach((canvas) => {
           document.getElementById(canvas).style.width = "70%";
 
-          canvasList.forEach((canvas) => {
+          this.canvasList.forEach((canvas) => {
             
             document.getElementById(canvas).style.filter = "brightness(129%)";
 
@@ -137,9 +125,9 @@ class Omnibag {
         });
       } else {
         document.getElementById("boss-layer-c-canvas").style.filter = "brightness(100%)";
-        canvasList.forEach((canvas) => {
+        this.canvasList.forEach((canvas) => {
           document.getElementById(canvas).style.width = "50%";
-          canvasList.forEach((canvas) => {
+          this.canvasList.forEach((canvas) => {
 
             document.getElementById(canvas).style.filter = "brightness(59%)";
 
@@ -148,11 +136,8 @@ class Omnibag {
       }
 
       if (this.frame >= 8 && this.frame <= 14) {
-        // console.log(this.frame) 
-        // hero A hit with x3
         const currentBoss = this.game.boss;
-        currentBoss.takeDamageLimitBreak(this.game.heroC.attackPower * 3);
-        console.log(this.game.heroC.attackPower);
+        currentBoss.takeDamageLimitBreak(this.game.heroC.attackPower * 3, this.game.heroC.critChance);
 
       }
     }

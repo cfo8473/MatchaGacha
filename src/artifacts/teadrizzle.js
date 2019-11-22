@@ -96,7 +96,7 @@ class TeaDrizzle {
       // console.log(this.frame) 
       // hero A hit with x3
       const currentBoss = this.game.boss;
-      currentBoss.takeDamageLimitBreak(this.game.heroB.attackPower * 1.5);
+      currentBoss.takeDamageLimitBreak(this.game.heroB.attackPower * 1.5, this.game.heroB.critChance);
       console.log(this.game.heroB.attackPower);
 
     }

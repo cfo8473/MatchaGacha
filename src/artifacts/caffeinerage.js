@@ -106,8 +106,7 @@ class CaffeineRage {
         // console.log(this.frame) 
         // hero A hit with x3
         const currentBoss = this.game.boss;
-        currentBoss.takeDamageLimitBreak(this.game.heroA.attackPower * 6);
-        console.log(this.game.heroA.attackPower);
+        currentBoss.takeDamageLimitBreak(this.game.heroA.attackPower * 6, this.game.heroA.critChance);
       
       }
         
