@@ -4,6 +4,7 @@ class Controls {
   constructor(game) {
     this.game = game;
     this.bindKeyHandlers();
+    let bossLayerIndex;
   }
 
   bindKeyHandlers() {
@@ -43,6 +44,27 @@ class Controls {
       //debug keys
       case 'p':
         return console.log(this.game.boss);
+      case 'q':
+        // document.getElementById("limit-break-canvas").style.zIndex = "9999";
+        document.getElementById("limit-break-canvas").style.zIndex = "9";
+        this.game.callLimitBreak("rage");
+        break;
+      case 'w':
+        let bossLayerIndex = parseInt(document.getElementById("boss-layer-c-canvas").style.zIndex);
+        document.getElementById("limit-break-canvas").style.zIndex = bossLayerIndex;
+        this.game.callLimitBreak("drizzle");
+        break
+      case 'e':
+        document.getElementById("limit-break-canvas").style.zIndex = 1544;
+        this.game.callLimitBreak("omni");
+        break
+      case 'r':
+
+        document.getElementById("limit-break-canvas").style.zIndex = 1544;
+        this.game.callLimitBreak("sun");
+        break
+      
+        
     }
   }
 

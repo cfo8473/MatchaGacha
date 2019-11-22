@@ -46,10 +46,14 @@ class Party {
   draw() {
     this.context.clearRect(0, 0, this.width, this.height);
     
+    if (this.attackFrames === 1) {
+      document.getElementById("boss-layer-c-canvas").style.filter = "brightness(100%)";
+    }
     if (this.attackFrames === 0) {
       this.context.drawImage(this.image, this.x, this.y);
       this.context.drawImage(this.keyUp, 14, 55);
       this.attackState = false;
+      
     } else if (this.attackFrames > 0 ) {
       this.drawAttack();
       this.attackFrames -= 1;
@@ -59,12 +63,15 @@ class Party {
 
   drawAttack() {
     if (this.attackFrames > 3) {
+      document.getElementById("boss-layer-c-canvas").style.filter = "brightness(120%)";
       this.context.drawImage(this.heroPrepImage, this.x, this.y);
       this.context.drawImage(this.keyDown, 14, 55);
     } else {
+      
       this.context.drawImage(this.heroAttackImage, this.x, this.y);
       this.context.drawImage(this.keyDown, 14, 55);
     }
+    
     
   }
 

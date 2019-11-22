@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
   // ui contexts
   const menu = document.getElementById('menu-canvas').getContext('2d');
 
+  // artifacts / limit breaks
+  const limitBreak = document.getElementById('limit-break-canvas').getContext('2d');
+
   // environment contexts
   const hill = document.getElementById('hill-canvas').getContext('2d');
   const sky = document.getElementById('sky-canvas').getContext('2d');
@@ -39,7 +42,8 @@ document.addEventListener("DOMContentLoaded", function() {
     fuji: fuji,
     frontBoss: bossLayerC,
     partyUI: partyGroup,
-    menu: menu
+    menu: menu,
+    limitBreak: limitBreak
     
   };
 

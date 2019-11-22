@@ -9,12 +9,15 @@ const dongDongSizes = {
   DEAD_HEIGHT: 1600,
 }
 
+const DmgText = require('../damage');
+
 class DongDong {
   constructor(game, bossCanvas) {
     // console.log(bossCanvas);
     // console.log(game);
     // console.log(bossCanvas); 
-    this.hitPoints = 2000;
+    this.maxHitPoints = game.level * game.monsterBaseHP;
+    this.hitPoints = this.maxHitPoints;
     this.x = 500;
     this.y = -30;
     this.bossFrames = 0;
@@ -44,12 +47,33 @@ class DongDong {
     if (Math.random() >= (1 - (partyMember.critChance * 0.01))) {
       console.log("CRITICAL!")
       this.hitPoints -= partyMember.attackPower * 2;
+      let damageText = new DmgText(this.game, partyMember.attackPower * 2);
+
+      this.game.damageTexts.push(damageText);
     } else {
       this.hitPoints -= partyMember.attackPower;
+      let damageText = new DmgText(this.game, partyMember.attackPower);
+
+      this.game.damageTexts.push(damageText);
     }
     // debug death
     
     // console.log(this.hitPoints);
+  }
+
+  takeDamageLimitBreak(heroDamage) {
+    this.hitPoints -= heroDamage;
+    let damageText = new DmgText(this.game, heroDamage);
+
+    this.game.damageTexts.push(damageText);
+  }
+
+  hpPercentage () {
+    let currentHpPercentage = (this.hitPoints / this.maxHitPoints);
+    if (currentHpPercentage >= 0) {
+      return currentHpPercentage;
+    } else 
+    return 0;
   }
 
   death() {
@@ -93,7 +117,7 @@ class DongDong {
   }
 
   deathAnimation() {
-    console.log(this.deathFrames);
+    // console.log(this.deathFrames);
     this.deathFrames -= 1;
     document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
     this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-dead.png';
