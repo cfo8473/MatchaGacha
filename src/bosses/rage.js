@@ -162,7 +162,7 @@ class Rage {
 
       this.speed = -(this.speed);
       this.image.src = '../assets/images/characters/bosses/alishar/alishar-right.png';
-      document.getElementById("boss-layer-c-canvas").style.zIndex = "2";
+      document.getElementById("boss-layer-c-canvas").style.zIndex = "9";
     }
 
 

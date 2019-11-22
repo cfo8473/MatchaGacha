@@ -49,6 +49,7 @@ body {
   top: -1px;
   left: -1px;
   outline: none;
+  transition: all 0.8s
 }
 
 
@@ -56,41 +57,60 @@ body {
 #mountains-canvas {
   position: absolute;
   z-index: 3;
+  transition: all 0.8s
 }
 
 #background-mountains-canvas {
   position: absolute;
   z-index: 2;
+  transition: all 0.8s
 }
 
 #cloud-layer-a-canvas {
   position: absolute;
   z-index: 88;
+  transition: all 0.8s
+}
+
+#limit-break-canvas {
+  position: absolute;
+  z-index: 66;
+  overflow: hidden;
+  
+  transition: all 2s;
+;
+  
 }
 
 #cloud-layer-c-canvas {
   position: absolute;
   z-index: 6;
+  transition: all 0.8s
 }
 
 #boss-layer-c-canvas {
   position: absolute;
   z-index: 7;
+  /* transition: all 0.8s */
 }
 
 #sky-canvas {
   position: absolute;
   z-index: 0;
+  transition: all 0.8s
 }
 
 #fuji-canvas {
   position: absolute;
   z-index: 1;
+  transition: all 0.8s
 }
 
 #hill-canvas {
   position: absolute;
   z-index: 9;
+  transition: all 0.8s
+
 }
 
 .party-canvas-container {
@@ -99,6 +119,7 @@ body {
   height: 132;
   width: 768;
   margin: 0 auto;
+  
 
 }
 
@@ -181,4 +202,5 @@ body {
 #menu-canvas {
   position: absolute;
   z-index: 411;
+  transition: all 0.8s
 }

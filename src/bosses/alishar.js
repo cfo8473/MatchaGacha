@@ -8,9 +8,12 @@ const SIZES = {
 
 }
 
-class DongDong {
+const DmgText = require('../damage');
+
+class Alishar {
   constructor(game, bossCanvas) {
-    this.hitPoints = 2000;
+    this.maxHitPoints = game.level * game.monsterBaseHP;
+    this.hitPoints = this.maxHitPoints;
     this.x = 100;
     this.y = -80;
     this.bossFrames = 0;
@@ -23,8 +26,6 @@ class DongDong {
     this.image.src = '../assets/images/characters/bosses/alishar/alishar-right.png';
     this.width = SIZES.RIGHT_WIDTH,
     this.height = SIZES.RIGHT_HEIGHT
-
-    document.getElementById("boss-layer-c-canvas").style.zIndex = "2";
 
     this.frameUp = true;
     this.phase = 2;
@@ -41,8 +42,14 @@ class DongDong {
     if (Math.random() >= (1 - (partyMember.critChance * 0.01))) {
       console.log("CRITICAL!")
       this.hitPoints -= partyMember.attackPower * 2;
+      let damageText = new DmgText(this.game, partyMember.attackPower * 2);
+
+      this.game.damageTexts.push(damageText);
     } else {
       this.hitPoints -= partyMember.attackPower;
+      let damageText = new DmgText(this.game, partyMember.attackPower);
+
+      this.game.damageTexts.push(damageText);
     }
     // debug death
 
@@ -51,6 +58,13 @@ class DongDong {
     }
 
     // console.log(this.hitPoints);
+  }
+
+  takeDamageLimitBreak(heroDamage) {
+    this.hitPoints -= heroDamage;
+    let damageText = new DmgText(this.game, heroDamage);
+
+    this.game.damageTexts.push(damageText);
   }
 
   death() {
@@ -80,7 +94,7 @@ class DongDong {
   // }
 
   update() {
-    console.log(this.frame);
+    // console.log(this.frame);
 
     this.step += 1;
 
@@ -97,12 +111,21 @@ class DongDong {
       } else {
         this.frame -= 1;
       }
+   
     }
+
 
   }
 
+  hpPercentage() {
+    let currentHpPercentage = (this.hitPoints / this.maxHitPoints);
+    if (currentHpPercentage >= 0) {
+      return currentHpPercentage;
+    } else
+      return 0;
+  }
   deathAnimation() {
-    console.log(this.deathFrames);
+    // console.log(this.deathFrames);
     this.deathFrames -= 1;
     document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
     this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-dead.png';
@@ -207,4 +230,4 @@ class DongDong {
   }
 }
 
-module.exports = DongDong;
+module.exports = Alishar;

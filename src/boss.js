@@ -34,6 +34,10 @@ class Boss {
     }
   }
 
+  takeDamageLimitBreak(heroDamage) {
+    this.hitPoints -= heroDamage;
+  }
+
   death() {
     // temporary death
     this.hitPoints += 1000;
@@ -76,9 +80,6 @@ class Boss {
   
 
   draw() {
-    // requestAnimationFrame(this.draw);
-    
-    // console.log(this.bossFrames);
     
     if (this.bossFrames > 0 ) {
       this.image.src = "../assets/images/characters/bosses/mana-beast-idle3-damaged.png";
