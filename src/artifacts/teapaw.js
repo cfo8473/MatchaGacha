@@ -117,7 +117,7 @@ class CaffeineRage {
       if (this.frame >= 0 && this.frame <= 11) {
         const currentBoss = this.game.boss;
         currentBoss.takeDamageLimitBreak(this.game.heroD.attackPower * 1.5, this.game.heroB.critChance);
-        console.log(this.game.heroB.attackPower);
+        // console.log(this.game.heroB.attackPower);
 
 
         // console.log(this.game.autoAttackFrames);

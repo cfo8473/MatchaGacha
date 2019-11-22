@@ -58,6 +58,10 @@ class LootBox {
 
       this.game.damageTexts.push(damageText);
     }
+
+    if (this.hitPoints <= 0 ) {
+      this.death();
+    }
     // debug death
 
     // console.log(this.hitPoints);
@@ -127,7 +131,7 @@ class LootBox {
   }
 
   shift() {
-    console.log(this.phase);
+    // console.log(this.phase);
     if (this.phase === 2) {
       this.image.src = '../assets/images/characters/bosses/lootbox/lootbox-phase.png';
       if (this.phaseFrames <= 400) {
