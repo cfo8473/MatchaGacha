@@ -83,7 +83,7 @@ class Game {
       //   this.boss = new Rage(this, options.frontBoss);
       //   break
       case 3:
-        document.getElementById("boss-layer-c-canvas").style.zIndex = "4";
+        document.getElementById("boss-layer-c-canvas").style.zIndex = "8";
         this.boss = new Lootbox(this, options.frontBoss);
         break
     }
