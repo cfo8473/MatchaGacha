@@ -9,13 +9,13 @@ Matcha Gacha was created using vanilla Javascript with the intentional avoidance
 
 ## Features
 
-<h1 align="center">
+
   <img
        align="center"
        src="https://i.imgur.com/oEblT7S.png"
        alt="Matcha Gacha features"
   </img>
-</h1>
+
 
 - Idle clicker functionality
 - 4 character system with different auto attack timers
@@ -37,7 +37,6 @@ Matcha Gacha was created using vanilla Javascript with the intentional avoidance
       document.getElementById(canvas).style.filter = "blur(2px)";
       document.getElementById(canvas).style.opacity = "0.8";
     });
-
 ```
   
 
