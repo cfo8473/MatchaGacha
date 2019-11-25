@@ -12,7 +12,7 @@ Matcha Gacha was created using vanilla Javascript with the intentional avoidance
 <h1 align="center">
   <img
        align="center"
-       src="https://imgur.com/a/9OnJVCG"
+       src="https://imgur.com/oEblT7S"
        alt="Matcha Gacha features"
   </img>
 </h1>
