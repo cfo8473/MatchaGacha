@@ -1,8 +1,14 @@
+https://matchagacha-2bdba.firebaseapp.com/
+
 # Matcha Gacha
 
 An idle game made with Javascript that involves the use of the popular Gacha system. The user will have an automatic stat gain that can be augmented by manually clicking or pressing on specific keys. Items can be rolled by gambling away currency.
 
 The goal of the game is to protect the green tea tree (or bush if you prefer realism.)
+
+[ A S D F ] to tap
+[ Q W E R ] for limit breaks
+[ Z X C V ] to upgrade 
 
 ## Technologies
 Matcha Gacha was created using vanilla Javascript with the intentional avoidance of other libraries or functionalities in order to practice the language.
