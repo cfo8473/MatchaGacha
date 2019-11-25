@@ -7,7 +7,9 @@ An idle game made with Javascript that involves the use of the popular Gacha sys
 The goal of the game is to protect the green tea tree (or bush if you prefer realism.)
 
 [ A S D F ] to tap
+
 [ Q W E R ] for limit breaks
+
 [ Z X C V ] to upgrade 
 
 ## Technologies
