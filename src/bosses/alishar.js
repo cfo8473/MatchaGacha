@@ -23,7 +23,7 @@ class Alishar {
     this.game = game;
     this.speed = -3;
     this.image = new Image();
-    this.image.src = '../assets/images/characters/bosses/alishar/alishar-right.png';
+    this.image.src = './assets/images/characters/bosses/alishar/alishar-right.png';
     this.width = SIZES.RIGHT_WIDTH,
     this.height = SIZES.RIGHT_HEIGHT
 
@@ -133,7 +133,7 @@ class Alishar {
     // console.log(this.deathFrames);
     this.deathFrames -= 1;
     document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
-    this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-dead.png';
+    this.image.src = './assets/images/characters/bosses/dongdong/dong-dong-dead.png';
     this.frameRate = 55;
     // console.log(this.x);
     this.width = dongDongSizes.DEAD_WIDTH;
@@ -165,7 +165,7 @@ class Alishar {
       this.phaseFrames += 1;
       this.width = SIZES.CONFRONT_WIDTH;
       this.height = SIZES.CONFRONT_HEIGHT;
-      this.image.src = '../assets/images/characters/bosses/alishar/alishar-idle.png';
+      this.image.src = './assets/images/characters/bosses/alishar/alishar-idle.png';
       document.getElementById("boss-layer-c-canvas").style.zIndex = "8";
 
       if (this.phaseFrames >= 1160) {
@@ -179,7 +179,7 @@ class Alishar {
 
       this.width = SIZES.LEFT_WIDTH;
       this.height = SIZES.LEFT_HEIGHT;
-      this.image.src = '../assets/images/characters/bosses/alishar/alishar-left.png';
+      this.image.src = './assets/images/characters/bosses/alishar/alishar-left.png';
       document.getElementById("boss-layer-c-canvas").style.zIndex = "3";
       this.y = -150;
       
@@ -196,7 +196,7 @@ class Alishar {
       }
 
       this.speed = -(this.speed);
-      this.image.src = '../assets/images/characters/bosses/alishar/alishar-right.png';
+      this.image.src = './assets/images/characters/bosses/alishar/alishar-right.png';
       document.getElementById("boss-layer-c-canvas").style.zIndex = "2";
     }
 

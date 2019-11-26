@@ -27,7 +27,7 @@ class DongDong {
     this.game = game;
     this.speed = 4;
     this.image = new Image();
-    this.image.src = '../assets/images/characters/bosses/dongdong/dong-run-sprite-sheet-left-big.png';
+    this.image.src = './assets/images/characters/bosses/dongdong/dong-run-sprite-sheet-left-big.png';
     this.width = dongDongSizes.RUN_LEFT_WIDTH;
     this.height = dongDongSizes.RUN_LEFT_HEIGHT;
 
@@ -109,7 +109,7 @@ class DongDong {
     // console.log(this.deathFrames);
     this.deathFrames -= 1;
     document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
-    this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-dead.png';
+    this.image.src = './assets/images/characters/bosses/dongdong/dong-dong-dead.png';
     this.frameRate = 55;
     // console.log(this.x);
     this.width = dongDongSizes.DEAD_WIDTH;
@@ -140,7 +140,7 @@ class DongDong {
         // console.log(this.x)
         this.frame = 0;
         document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
-        this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-dead.png';
+        this.image.src = './assets/images/characters/bosses/dongdong/dong-dong-dead.png';
         this.width = dongDongSizes.DEAD_WIDTH;
         this.height = dongDongSizes.DEAD_HEIGHT;
         this.speed = 3;
@@ -160,7 +160,7 @@ class DongDong {
       this.phaseFrames += 1;
       this.width = dongDongSizes.PHASE_WIDTH;
       this.height = dongDongSizes.PHASE_HEIGHT;
-      this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-confront.png';
+      this.image.src = './assets/images/characters/bosses/dongdong/dong-dong-confront.png';
       document.getElementById("boss-layer-c-canvas").style.zIndex = "8";
 
       if (this.phaseFrames >= 760) {
@@ -174,7 +174,7 @@ class DongDong {
 
       this.width = dongDongSizes.RUN_LEFT_WIDTH;
       this.height = dongDongSizes.RUN_LEFT_HEIGHT;
-      this.image.src = '../assets/images/characters/bosses/dongdong/dong-run-sprite-sheet-left-big.png';
+      this.image.src = './assets/images/characters/bosses/dongdong/dong-run-sprite-sheet-left-big.png';
       document.getElementById("boss-layer-c-canvas").style.zIndex = "5";
       this.y = -40;
       this.phase += 1
@@ -190,7 +190,7 @@ class DongDong {
       this.y = 0;
 
       this.speed = -(this.speed);
-      this.image.src = '../assets/images/characters/bosses/dongdong/dong-run-sprite-sheet-right-hills.png';
+      this.image.src = './assets/images/characters/bosses/dongdong/dong-run-sprite-sheet-right-hills.png';
       document.getElementById("boss-layer-c-canvas").style.zIndex = "3";
     }
 

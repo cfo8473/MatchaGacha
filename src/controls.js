@@ -45,17 +45,26 @@ class Controls {
       case 'v':
         return this.game.heroD.upgradeStr();
       //debug keys
+      case 'g':
+        this.game.heroA.limitBreakFrames = 40;
+        this.game.heroB.limitBreakFrames = 40;
+        this.game.heroC.limitBreakFrames = 40;
+        this.game.heroD.limitBreakFrames = 40;
+        break;
       case 'p':
         return console.log(this.game.boss);
       case 'j':
         // this.game.bossDeath();
+        document.getElementById("boss-layer-c-canvas").style.zIndex = "5";
         this.game.boss = new DongDong(this.game, this.game.options.frontBoss);
         break;
       case 'k':
         // this.game.bossDeath();
+        document.getElementById("boss-layer-c-canvas").style.zIndex = "2";
         return this.game.boss = new Alishar(this.game, this.game.options.frontBoss);
       case 'l':
         // this.game.boss Death();
+        document.getElementById("boss-layer-c-canvas").style.zIndex = "5";
         return this.game.boss = new Lootbox(this.game, this.game.options.frontBoss);
 
       case 'q':

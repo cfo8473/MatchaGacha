@@ -1,9 +1,12 @@
 class DamageText {
   constructor(game, damage, crit) {
     this.game = game;
-    this.textFrames = 50;
+    this.textFrames = 100;
     this.frame = 0;
     this.crit = crit;
+    this.yellow;
+    this.black;
+    this.red;
 
     // console.log(this.game.gameCanvas.clientHeight);
     // console.log(this.game.gameCanvas.clientWidth);
@@ -19,6 +22,7 @@ class DamageText {
     this.frame += 1;
     this.y -= 1;
     this.textFrames -= 1;
+
     
 
   }
@@ -26,13 +30,18 @@ class DamageText {
   draw() {
     this.update();
 
+    this.black = `rgb(0, 0, 0, ${(this.textFrames * 0.01)})`;
     if (this.crit) {
-      this.game.context.fillStyle = 'red';
-      this.game.context.strokeStyle = 'black';
+      this.red = `rgb(255, 75, 0, ${(this.textFrames * 0.01)})`;
+      this.x += Math.round(Math.random()) * 1 - 1
+      // console.log(`${(this.textFrames * 0.01) }`);
+      this.game.context.fillStyle = this.red;
+      this.game.context.strokeStyle = this.black;
       this.game.context.font = '24pt Arial Black';
     } else {
-      this.game.context.fillStyle = 'yellow';
-      this.game.context.strokeStyle = 'black';
+      this.yellow = `rgb(255, 255, 0, ${(this.textFrames * 0.03)})`;
+      this.game.context.fillStyle = this.yellow;
+      this.game.context.strokeStyle = this.black;
       this.game.context.font = '15pt Arial Black';
     }
     
