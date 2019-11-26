@@ -8,6 +8,7 @@ class Party {
     this.image = options.idleImage;
     this.height = this.context.canvas.height;
     this.width = this.context.canvas.width;
+    this.goldCost = 1;
     this.x = 0;
     this.y = 0;
 
@@ -56,7 +57,13 @@ class Party {
   }
 
   upgradeStr() {
-    this.attackPower += 55;
+    if (this.game.player.freeCurrency >= this.goldCost) {
+      this.attackPower += 1;
+      this.attackSpeed -= 1;
+      this.game.player.freeCurrency -= this.goldCost;
+      this.goldCost += 5;
+    }
+    
   }
 
   heroAttackAnimation() {
@@ -143,13 +150,17 @@ class Party {
   drawStats() {
     const attackStat = `ATK ${this.attackPower}`;
     const criticalStat = `CRIT ${this.critChance}%`;
+    const upgradeStat = `COST ${this.goldCost}`;
+    const speedStat = `SPD ${(this.attackSpeed/100)}`;
     this.context.font = "10px Arial";
     this.context.fillStyle = 'white';
     this.context.fillText(`LIMIT`, 70, 15);
     this.context.fillText(`ATK`, 130, 15);
     // this.context.fillText("DEBUG INFO", 55, 20);
+    this.context.fillText(speedStat, 80, 65);
     this.context.fillText(attackStat, 130, 50);
     this.context.fillText(criticalStat, 130, 65);
+    this.context.fillText(upgradeStat, 80, 80);
   }
 }
 

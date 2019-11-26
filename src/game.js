@@ -154,6 +154,8 @@ class Game {
     oldBoss = null;
     this.boss = null;
 
+    this.player.freeCurrency += (this.level * 1000);
+
     
     console.log("dead boss debug");
     this.randomBoss(this.options);

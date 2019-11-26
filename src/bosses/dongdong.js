@@ -86,8 +86,6 @@ class DongDong {
     
     this.deathStatus = true;
     // temporary death
-
-    this.game.player.freeCurrency += 40000;
   }
 
   update () {

@@ -78,7 +78,6 @@ class Alishar {
     // temporary death
     this.game.bossDeath();
 
-    this.game.player.freeCurrency += 40000;
   }
 
 

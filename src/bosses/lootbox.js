@@ -92,7 +92,7 @@ class LootBox {
     this.deathStatus = true;
     // temporary deaththis.game.bossDeath();
 
-    this.game.player.freeCurrency += 40000;
+    this.game.player.freeCurrency += 4000;
   }
 
   update() {
