@@ -59,7 +59,10 @@ class Party {
   upgradeStr() {
     if (this.game.player.freeCurrency >= this.goldCost) {
       this.attackPower += 1;
-      this.attackSpeed -= 1;
+      if (this.attackSpeed >= 10 ) {
+        this.attackSpeed -= 1;
+      }
+      
       this.game.player.freeCurrency -= this.goldCost;
       this.goldCost += 5;
     }
