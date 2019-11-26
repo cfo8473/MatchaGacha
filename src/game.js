@@ -109,20 +109,30 @@ class Game {
     if (this.limitBreak === null ) {
       switch (limitBreakName) {
         case 'rage':
-          this.heroA.limitBreakFrames = 0;
-          this.limitBreak = new CaffeineRage(this, this.options.limitBreak);
+          if (this.heroA.limitBreakFrames === 40) {
+            this.heroA.limitBreakFrames = 0;
+            this.limitBreak = new CaffeineRage(this, this.options.limitBreak);
+          }
+          
           break;
         case 'drizzle':
-          this.heroB.limitBreakFrames = 0;
-          this.limitBreak = new TeaDrizzle(this, this.options.limitBreak);
+          if (this.heroB.limitBreakFrames === 40) {
+            this.heroB.limitBreakFrames = 0;
+            this.limitBreak = new TeaDrizzle(this, this.options.limitBreak);
+          }
           break;
         case 'omni':
-          this.heroC.limitBreakFrames = 0;
-          this.limitBreak = new Omnibag(this, this.options.limitBreak);
+          if (this.heroC.limitBreakFrames === 40) {
+            this.heroC.limitBreakFrames = 0;
+            this.limitBreak = new Omnibag(this, this.options.limitBreak);
+          }
           break;
         case 'sun':
-          this.heroD.limitBreakFrames = 0;
-          this.limitBreak = new TeaPaw(this, this.options.limitBreak);
+          if (this.heroD.limitBreakFrames === 40) {
+            this.heroD.limitBreakFrames = 0;
+            this.limitBreak = new TeaPaw(this, this.options.limitBreak);
+          }
+          
           break;
       }
     }
