@@ -45,11 +45,17 @@ class Controls {
       case 'v':
         return this.game.heroD.upgradeStr();
       //debug keys
+      case 'g':
+        this.game.heroA.limitBreakFrames = 40;
+        this.game.heroB.limitBreakFrames = 40;
+        this.game.heroC.limitBreakFrames = 40;
+        this.game.heroD.limitBreakFrames = 40;
+        break;
       case 'p':
         return console.log(this.game.boss);
       case 'j':
         // this.game.bossDeath();
-        document.getElementById("boss-layer-c-canvas").style.zIndex = "5"; 
+        document.getElementById("boss-layer-c-canvas").style.zIndex = "5";
         this.game.boss = new DongDong(this.game, this.game.options.frontBoss);
         break;
       case 'k':

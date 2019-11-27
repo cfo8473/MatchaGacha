@@ -14,7 +14,7 @@ class CaffeineRage {
     this.frameRate = 4;
     this.game = game;
     this.image = new Image();
-    this.image.src = '../assets/images/limitbreak/greenteasun.png';
+    this.image.src = './assets/images/limitbreak/greenteasun.png';
     this.width = SIZES.CONFRONT_WIDTH,
       this.height = SIZES.CONFRONT_HEIGHT
     this.frameUp = true;

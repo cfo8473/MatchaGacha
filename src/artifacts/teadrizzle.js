@@ -17,7 +17,7 @@ class TeaDrizzle {
     this.frameRate = 2;
     this.game = game;
     this.image = new Image();
-    this.image.src = '../assets/images/limitbreak/beamlimitbreak.png';
+    this.image.src = './assets/images/limitbreak/beamlimitbreak.png';
     this.width = SIZES.RIGHT_WIDTH,
     this.height = SIZES.RIGHT_HEIGHT
     this.frameUp = true;
@@ -97,7 +97,7 @@ class TeaDrizzle {
       // hero A hit with x3
       const currentBoss = this.game.boss;
       currentBoss.takeDamageLimitBreak(this.game.heroB.attackPower * 1.5, this.game.heroB.critChance);
-      console.log(this.game.heroB.attackPower);
+      // console.log(this.game.heroB.attackPower);
 
     }
 

@@ -52,11 +52,11 @@ class Boss {
     
     switch(random) {
       case 0:
-        return this.image.src = "../assets/images/characters/bosses/mana-beast-idle.png";
+        return this.image.src = "./assets/images/characters/bosses/mana-beast-idle.png";
       case 1:
-        return this.image.src = "../assets/images/characters/bosses/mana-beast-idle2.png";
+        return this.image.src = "./assets/images/characters/bosses/mana-beast-idle2.png";
       case 2:
-        return this.image.src = "../assets/images/characters/bosses/mana-beast-idle3.png";
+        return this.image.src = "./assets/images/characters/bosses/mana-beast-idle3.png";
     }
       
     
@@ -82,7 +82,7 @@ class Boss {
   draw() {
     
     if (this.bossFrames > 0 ) {
-      this.image.src = "../assets/images/characters/bosses/mana-beast-idle3-damaged.png";
+      this.image.src = "./assets/images/characters/bosses/mana-beast-idle3-damaged.png";
       if (this.hit) {
         this.y += 4;
         this.hit = !this.hit;

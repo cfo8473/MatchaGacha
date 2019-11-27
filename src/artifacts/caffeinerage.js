@@ -14,7 +14,7 @@ class CaffeineRage {
     this.frameRate = 2;
     this.game = game;
     this.image = new Image();
-    this.image.src = '../assets/images/limitbreak/rage.png';
+    this.image.src = './assets/images/limitbreak/rage.png';
     this.width = SIZES.CONFRONT_WIDTH,
       this.height = SIZES.CONFRONT_HEIGHT
     this.frameUp = true;

@@ -14,7 +14,7 @@ class Omnibag {
     this.frameRate = 1;
     this.game = game;
     this.image = new Image();
-    this.image.src = '../assets/images/limitbreak/omnibag.png';
+    this.image.src = './assets/images/limitbreak/omnibag.png';
     this.canvasList = ["game-canvas", "menu-canvas", "hill-canvas", "sky-canvas", "fuji-canvas", "cloud-layer-a-canvas", "cloud-layer-c-canvas",
       "boss-layer-c-canvas", "mountains-canvas", "background-mountains-canvas"];
     this.width = SIZES.CONFRONT_WIDTH,

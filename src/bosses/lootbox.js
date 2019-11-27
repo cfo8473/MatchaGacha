@@ -27,7 +27,7 @@ class LootBox {
     this.game = game;
     this.speed = 2;
     this.image = new Image();
-    this.image.src = '../assets/images/characters/bosses/lootbox/lootbox.png';
+    this.image.src = './assets/images/characters/bosses/lootbox/lootbox.png';
     this.width = dongDongSizes.RUN_LEFT_WIDTH;
     this.height = dongDongSizes.RUN_LEFT_HEIGHT;
 
@@ -58,7 +58,6 @@ class LootBox {
 
       this.game.damageTexts.push(damageText);
     }
-
     if (this.hitPoints <= 0 ) {
       this.death();
     }
@@ -71,7 +70,7 @@ class LootBox {
     this.hitPoints -= heroDamage;
     let damageText;
     if (Math.random() >= (1 - (critChance * 0.01))) {
-      console.log("JKLDFSDS");
+      // console.log("JKLDFSDS");
       damageText = new DmgText(this.game, (heroDamage * 1.5), true);
     } else {
       damageText = new DmgText(this.game, heroDamage, false);
@@ -89,11 +88,11 @@ class LootBox {
   }
 
   death() {
-
+    this.game.bossDeath();
     this.deathStatus = true;
-    // temporary death
+    // temporary deaththis.game.bossDeath();
 
-    this.game.player.freeCurrency += 40000;
+    this.game.player.freeCurrency += 4000;
   }
 
   update() {
@@ -115,7 +114,7 @@ class LootBox {
     // console.log(this.deathFrames);
     this.deathFrames -= 1;
     document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
-    this.image.src = '../assets/images/characters/bosses/dongdong/dong-dong-dead.png';
+    this.image.src = './assets/images/characters/bosses/dongdong/dong-dong-dead.png';
     this.frameRate = 55;
     // console.log(this.x);
     this.width = dongDongSizes.DEAD_WIDTH;
@@ -133,7 +132,7 @@ class LootBox {
   shift() {
     // console.log(this.phase);
     if (this.phase === 2) {
-      this.image.src = '../assets/images/characters/bosses/lootbox/lootbox-phase.png';
+      this.image.src = './assets/images/characters/bosses/lootbox/lootbox-phase.png';
       if (this.phaseFrames <= 400) {
         if (this.x >= 160) {
           this.x -= 1;
@@ -166,12 +165,12 @@ class LootBox {
 
       this.x -= this.speed;
       if (this.x >= 400) {
-        this.image.src = '../assets/images/characters/bosses/lootbox/lootbox.png';
+        this.image.src = './assets/images/characters/bosses/lootbox/lootbox.png';
         this.speed = -(this.speed)
         this.phase += 1;
       }
       else if (this.x <= -25) {
-        this.image.src = '../assets/images/characters/bosses/lootbox/lootbox-right.png';
+        this.image.src = './assets/images/characters/bosses/lootbox/lootbox-right.png';
         this.speed = -(this.speed)
       }
     }
