@@ -6,7 +6,6 @@ const SIZES = {
 
 class CaffeineRage {
   constructor(game, limitBreakCanvas) {
-    console.log("CF loaded debug");
     this.x = 70;
     this.y = 110;
     this.canvas = limitBreakCanvas;
@@ -28,7 +27,6 @@ class CaffeineRage {
   takeDamage(partyMember) {
     this.bossFrames = 1;
     if (Math.random() >= (1 - (partyMember.critChance * 0.01))) {
-      console.log("CRITICAL!")
       this.hitPoints -= partyMember.attackPower * 2;
     } else {
       this.hitPoints -= partyMember.attackPower;

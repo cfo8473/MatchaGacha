@@ -6,7 +6,6 @@ const SIZES = {
 
 class Omnibag {
   constructor(game, limitBreakCanvas) {
-    console.log("OB loaded debug");
     this.x = -100;
     this.y = -30;
     this.canvas = limitBreakCanvas;
@@ -35,7 +34,6 @@ class Omnibag {
   takeDamage(partyMember) {
     this.bossFrames = 1;
     if (Math.random() >= (1 - (partyMember.critChance * 0.01))) {
-      console.log("CRITICAL!")
       this.hitPoints -= partyMember.attackPower * 2;
     } else {
       this.hitPoints -= partyMember.attackPower;
@@ -45,8 +43,6 @@ class Omnibag {
     if (this.hitPoints <= 0) {
       this.death();
     }
-
-    // console.log(this.hitPoints);
   }
 
   death() {

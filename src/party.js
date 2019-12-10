@@ -3,7 +3,6 @@ class Party {
 
   constructor(game, options, attackStart) {
     this.game = game;
-    console.log(options)
     this.context = options.context;
     this.image = options.idleImage;
     this.height = this.context.canvas.height;
@@ -11,12 +10,18 @@ class Party {
     this.goldCost = 1;
     this.x = 0;
     this.y = 0;
+  
+
+
+    this.upgradeable = false;
 
     // images
     this.heroAttackImage = options.attackImage;
     this.heroPrepImage = options.prepImage;
     this.keyDown = options.heroKeyDown;
     this.keyUp = options.heroKeyUp;
+    this.limitKey = options.heroLimitKey;
+    this.limitPos = options.limitPos;
     
     //stats
     
@@ -31,12 +36,15 @@ class Party {
     this.step = 0;
     this.autoAttack();
 
+    this.frameRate = 25;
+    this.stepB = 0;
+    this.frameB = 0;
+
     //limit break
     this.limitBreakFrames = 40;
   }
 
   changeSprite() {
-    console.log(this.image);
   }
 
   autoAttack() {
@@ -50,6 +58,23 @@ class Party {
       this.heroAttackAnimation();
       this.game.boss.takeDamage(this);
     }
+
+    
+  }
+
+  updateB() {
+
+    this.stepB += 1;
+
+    if (this.stepB > this.frameRate) {
+      this.stepB = 0;
+      this.frameB += 1;
+    }
+
+    if (this.frameB > 1) {
+      this.frameB = 0;
+    }
+
   }
 
   fetchPower() {
@@ -85,26 +110,52 @@ class Party {
   drawAttackTimer() {
     // this.context.beginPath();
     this.context.strokeStyle = "rgba(0, 0, 0, 0.4)";
-    this.context.rect( 130, 20, 50, 10);
+    this.context.rect( 70, 20, 50, 10);
     this.context.fillStyle = `rgba(255, ${this.frames}, 0, 0.7)`;
-    this.context.fillRect( 130, 20, ((this.frames / this.attackSpeed)*100)/2, 10);
+    this.context.fillRect( 70, 20, ((this.frames / this.attackSpeed)*100)/2, 10);
 
     this.context.fillStyle = `rgba(255, ${this.frames}, 0, 0.7)`;
-    this.context.fillRect(130, 20, ((this.frames / this.attackSpeed) * 100) / 2, 10);
+    this.context.fillRect(70, 20, ((this.frames / this.attackSpeed) * 100) / 2, 10);
   }
 
   drawLimitBreakTimer() {
     if (this.limitBreakFrames === 40){
       this.context.fillStyle = `rgba(0, ${((this.frames + 180) % 255) + 100}, 0, 1)`;
-      this.context.fillRect(70, 20, 50, 10);
+      this.context.fillRect(130, 20, 50, 10);
+      // this.context.drawImage(this.limitKey, 44, 35);
+
+      // this.game.context.drawImage(
+      //   this.limitKey,
+      //   32 * this.frameB,
+      //   0,
+      //   32,
+      //   32,
+      //   95,
+      //   35,
+      //   32,
+      //   32
+      // );
+
+      this.game.cloudLayerA.context.drawImage(
+        this.limitKey,
+        32 * this.frameB,
+        0,
+        32,
+        32,
+
+        this.limitPos,
+        354,
+        66,
+        66
+      );
+      
     } else {
       this.context.fillStyle = `rgba(155, 155, 155, 1)`;
-      this.context.fillRect(70, 20, 50, 10);
+      this.context.fillRect(130, 20, 50, 10);
       this.context.strokeStyle = "rgba(0, 0, 0, 0.4)";
-      this.context.rect(70, 20, 50, 10);
+      this.context.rect(130, 20, 50, 10);
       this.context.fillStyle = `rgba(171, ${this.limitBreakFrames * 20}, 171, 1)`;
-      // this.context.stroke();
-      this.context.fillRect(70, 20, ((this.limitBreakFrames / 40) * 100) / 2, 10);
+      this.context.fillRect(130, 20, ((this.limitBreakFrames / 40) * 100) / 2, 10);
     }
     
     
@@ -113,6 +164,7 @@ class Party {
 
   draw() {
     this.update();
+    this.updateB();
 
     
 
@@ -153,16 +205,23 @@ class Party {
   drawStats() {
     const attackStat = `ATK ${this.attackPower}`;
     const criticalStat = `CRIT ${this.critChance}%`;
-    const upgradeStat = `COST ${this.goldCost}`;
+    
     const speedStat = `SPD ${(this.attackSpeed/100)}`;
     this.context.font = "10px Arial";
     this.context.fillStyle = 'white';
-    this.context.fillText(`LIMIT`, 70, 15);
-    this.context.fillText(`ATK`, 130, 15);
+    this.context.fillText(`LIMIT`, 130, 15);
+    this.context.fillText(`ATK`, 75, 15);
     // this.context.fillText("DEBUG INFO", 55, 20);
     this.context.fillText(speedStat, 80, 65);
-    this.context.fillText(attackStat, 130, 50);
+    this.context.fillText(attackStat, 130, 80);
     this.context.fillText(criticalStat, 130, 65);
+    if (this.game.player.freeCurrency >= this.goldCost) {
+      this.context.fillStyle = 'yellow';
+    } else {
+      this.context.fillStyle = 'red';
+    }
+    const upgradeStat = `COST ${this.goldCost}`;
+    
     this.context.fillText(upgradeStat, 80, 80);
   }
 }
