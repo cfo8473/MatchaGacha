@@ -5,8 +5,6 @@ class Menu {
     this.open = false;
     this.menu = new Image();
     this.menu.src = "./assets/images/ui/menu-blue-big.png";
-    console.log(canvas);
-    console.log(game);
   }
 
   toggleMenu() {

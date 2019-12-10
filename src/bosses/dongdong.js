@@ -85,6 +85,7 @@ class DongDong {
   death() {
     
     this.deathStatus = true;
+    this.game.bossDeath();
     // temporary death
   }
 
@@ -136,17 +137,20 @@ class DongDong {
       // if dead and x position is returning from moving -> right
       if (this.x >= -120) {
         // console.log(this.x)
-        this.frame = 0;
-        document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
-        this.image.src = './assets/images/characters/bosses/dongdong/dong-dong-dead.png';
-        this.width = dongDongSizes.DEAD_WIDTH;
-        this.height = dongDongSizes.DEAD_HEIGHT;
-        this.speed = 3;
+        this.speed = 0;
+        this.game.bossDeath();
+        // this.frame = 0;
+        // document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
+        // this.image.src = './assets/images/characters/bosses/dongdong/dong-dong-dead.png';
+        // this.width = dongDongSizes.DEAD_WIDTH;
+        // this.height = dongDongSizes.DEAD_HEIGHT;
+        // this.speed = 3;
         // up 
       } else {
         
         this.speed = 0;
-        this.deathAnimation();
+        this.game.bossDeath();
+        // this.deathAnimation();
       }
     } else if (this.phase === 2 ) {
 

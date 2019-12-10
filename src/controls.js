@@ -51,8 +51,6 @@ class Controls {
         this.game.heroC.limitBreakFrames = 40;
         this.game.heroD.limitBreakFrames = 40;
         break;
-      case 'p':
-        return console.log(this.game.boss);
       case 'j':
         // this.game.bossDeath();
         document.getElementById("boss-layer-c-canvas").style.zIndex = "5";

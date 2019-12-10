@@ -1,4 +1,4 @@
-console.log("Webpack is working!");
+
 const Game = require("./game.js");
 
 document.addEventListener("DOMContentLoaded", function() {

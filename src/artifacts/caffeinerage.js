@@ -6,7 +6,6 @@ const SIZES = {
 
 class CaffeineRage {
   constructor(game, limitBreakCanvas) {
-    console.log("CF loaded debug");
     this.x = -180;
     this.y = -340;
     this.canvas = limitBreakCanvas;
@@ -27,7 +26,6 @@ class CaffeineRage {
   takeDamage(partyMember) {
     this.bossFrames = 1;
     if (Math.random() >= (1 - (partyMember.critChance * 0.01))) {
-      console.log("CRITICAL!")
       this.hitPoints -= partyMember.attackPower * 2;
     } else {
       this.hitPoints -= partyMember.attackPower;
@@ -38,7 +36,6 @@ class CaffeineRage {
       this.death();
     }
 
-    // console.log(this.hitPoints);
   }
 
   death() {
@@ -51,7 +48,6 @@ class CaffeineRage {
   }
 
   update() {
-    // console.log(this.frame);
 
     this.step += 1;
 
@@ -60,13 +56,7 @@ class CaffeineRage {
     document.getElementById("background-mountains-canvas").style.filter = "brightness(180%)";
     document.getElementById("fuji-canvas").style.filter = "brightness(170%)";
     document.getElementById("cloud-layer-c-canvas").style.filter = "brightness(151%)";
-    // document.getElementById("sky-canvas").style.filter = "blur(7px)";
-    // document.getElementById("mountains-canvas").style.filter = "blur(7px)";
-    // document.getElementById("background-mountains-canvas").style.filter = "blur(7px)";
-    // document.getElementById("fuji-canvas").style.filter = "blur(7px)";
 
-
-    
     if (this.frame > 28) {
 
       

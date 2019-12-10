@@ -13,7 +13,6 @@ const Tap = {
     const boss = options.boss;
     
     tapHeroA.addEventListener('click', (e) => {
-      console.log("SDJFKLSD")
       player.tap(heroA.fetchPower());
       heroA.heroAttackAnimation();
       boss.takeDamage(heroA);

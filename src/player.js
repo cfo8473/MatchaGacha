@@ -24,7 +24,6 @@ class Player {
 
   upgradeIncome(value) {
     this.passiveIncome += value;
-    console.log(`${value} added to income (${this.passiveIncome})`);
   }
 
   addPremiumCurrency(value) {

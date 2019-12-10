@@ -7,6 +7,8 @@ const Controls = require('./controls');
 const Menu = require('./menu');
 
 
+
+
 //bosses
 const DongDong = require('./bosses/dongdong');
 const Alishar = require('./bosses/alishar');
@@ -24,8 +26,6 @@ const TeaPaw = require('./artifacts/teapaw');
 
 class Game {
   constructor(options)  {
-
-    console.log("DEBUG VERSION TEST NOV222019 836AM")
     this.options = options;
     this.context = options.context;
     this.gameCanvas = options.gameCanvas;
@@ -48,10 +48,10 @@ class Game {
     this.drawBackground(options);
     this.drawParty(partyUI[0], partyUI[1], partyUI[2], partyUI[3]);
 
-    this.initializeBosses(options);
+    // this.initializeBosses(options);
   
-    this.randomBoss(options);
-
+    // this.randomBoss(options);
+    this.boss = new DongDong(this, options.frontBoss);
     
 
     Tap.tapMethods({
@@ -156,10 +156,7 @@ class Game {
 
     this.player.freeCurrency += (this.level * 1000);
 
-    
-    console.log("dead boss debug");
     this.randomBoss(this.options);
-    console.log(this.boss);
   }
 
   
@@ -244,6 +241,15 @@ class Game {
     heroKeyUpC.src = "./assets/images/keys/d-up.png";
     heroKeyUpD.src = "./assets/images/keys/f-up.png";
 
+    const heroLimitUpA = new Image();
+    const heroLimitUpB = new Image();
+    const heroLimitUpC = new Image();
+    const heroLimitUpD = new Image();
+    heroLimitUpA.src = "./assets/images/keys/q.png";
+    heroLimitUpB.src = "./assets/images/keys/w.png";
+    heroLimitUpC.src = "./assets/images/keys/e.png";
+    heroLimitUpD.src = "./assets/images/keys/r.png";
+
     let heroOptionsA = {
       context: partyA,
       idleImage: heroIdleA,
@@ -251,6 +257,8 @@ class Game {
       attackImage: heroAttackA,
       heroKeyDown: heroKeyDownA,
       heroKeyUp: heroKeyUpA,
+      heroLimitKey: heroLimitUpA,
+      limitPos: 70,
     }
 
     // console.log(heroOptionsA);
@@ -262,6 +270,8 @@ class Game {
       attackImage: heroAttackB,
       heroKeyDown: heroKeyDownB,
       heroKeyUp: heroKeyUpB,
+      heroLimitKey: heroLimitUpB,
+      limitPos: 250,
     }
 
     let heroOptionsC = {
@@ -271,6 +281,8 @@ class Game {
       attackImage: heroAttackC,
       heroKeyDown: heroKeyDownC,
       heroKeyUp: heroKeyUpC,
+      heroLimitKey: heroLimitUpC,
+      limitPos: 440,
     }
 
     let heroOptionsD = {
@@ -280,6 +292,8 @@ class Game {
       attackImage: heroAttackD,
       heroKeyDown: heroKeyDownD,
       heroKeyUp: heroKeyUpD,
+      heroLimitKey: heroLimitUpD,
+      limitPos: 650,
     }
     
     this.heroA = new Party(this, heroOptionsA, 180);
@@ -328,6 +342,9 @@ class Game {
       this.cloudLayerC.draw();
       this.mountains.draw();
       this.backgroundMountains.draw();
+
+
+      
 
 
       if (this.damageTexts.length > 0) {
@@ -380,7 +397,7 @@ class Game {
         this.context.fillStyle = "white";
         (this.boss.hitPoints >= 0) ?
           this.context.fillText(`${this.boss.hitPoints} / ${this.boss.maxHitPoints}`, 544, 47) :
-          this.context.fillText("debug: wait for death animation (phase 2)", 254, 47);
+          this.context.fillText(`0 / ${this.boss.maxHitPoints}`, 254, 47);
 
 
       }

@@ -47,7 +47,6 @@ class LootBox {
   takeDamage(partyMember) {
     this.bossFrames = 1;
     if (Math.random() >= (1 - (partyMember.critChance * 0.01))) {
-      console.log("CRITICAL!")
       this.hitPoints -= partyMember.attackPower * 2;
       let damageText = new DmgText(this.game, partyMember.attackPower * 2, true);
 
