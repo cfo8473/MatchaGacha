@@ -44,7 +44,6 @@ class Controls {
         return this.game.heroC.upgradeStr();
       case 'v':
         return this.game.heroD.upgradeStr();
-      //debug keys
       case 'g':
         this.game.heroA.limitBreakFrames = 40;
         this.game.heroB.limitBreakFrames = 40;
@@ -52,21 +51,17 @@ class Controls {
         this.game.heroD.limitBreakFrames = 40;
         break;
       case 'j':
-        // this.game.bossDeath();
         document.getElementById("boss-layer-c-canvas").style.zIndex = "5";
         this.game.boss = new DongDong(this.game, this.game.options.frontBoss);
         break;
       case 'k':
-        // this.game.bossDeath();
         document.getElementById("boss-layer-c-canvas").style.zIndex = "2"; 
         return this.game.boss = new Alishar(this.game, this.game.options.frontBoss);
       case 'l':
-        // this.game.boss Death();
         document.getElementById("boss-layer-c-canvas").style.zIndex = "8"; 
         return this.game.boss = new Lootbox(this.game, this.game.options.frontBoss);
 
       case 'q':
-        // document.getElementById("limit-break-canvas").style.zIndex = "9999";
         document.getElementById("limit-break-canvas").style.zIndex = "9";
         this.game.callLimitBreak("rage");
         break;
@@ -80,12 +75,9 @@ class Controls {
         this.game.callLimitBreak("omni");
         break
       case 'r':
-
         document.getElementById("limit-break-canvas").style.zIndex = 1544;
         this.game.callLimitBreak("sun");
         break
-      
-        
     }
   }
 

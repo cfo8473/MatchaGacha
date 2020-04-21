@@ -13,9 +13,6 @@ const DmgText = require('../damage');
 
 class DongDong {
   constructor(game, bossCanvas) {
-    // console.log(bossCanvas);
-    // console.log(game);
-    // console.log(bossCanvas); 
     this.maxHitPoints = game.level * game.monsterBaseHP;
     this.hitPoints = this.maxHitPoints;
     this.x = 500;
@@ -56,9 +53,6 @@ class DongDong {
 
       this.game.damageTexts.push(damageText);
     }
-    // debug death
-    
-    // console.log(this.hitPoints);
   }
 
   takeDamageLimitBreak(heroDamage, critChance) {
@@ -105,12 +99,10 @@ class DongDong {
   }
 
   deathAnimation() {
-    // console.log(this.deathFrames);
     this.deathFrames -= 1;
     document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
     this.image.src = './assets/images/characters/bosses/dongdong/dong-dong-dead.png';
     this.frameRate = 55;
-    // console.log(this.x);
     this.width = dongDongSizes.DEAD_WIDTH;
     this.height = dongDongSizes.DEAD_HEIGHT;
     this.y = -54;
@@ -124,35 +116,12 @@ class DongDong {
   }
 
   shift() {
-    // console.log(this.x)
-    // console.log(this.phaseFrames);
-    // console.log(this.phase);
-    // console.log(this.deathStatus);
-    // console.log(`HP: ${this.hitPoints}`);
+    if (this.hitPoints <= 0) {
+      this.frameRate = 0;
+      this.death();
+    }
 
-    // console.log(this.image.src);
-    if (this.deathStatus) {
-      this.y = -54;
-      
-      // if dead and x position is returning from moving -> right
-      if (this.x >= -120) {
-        // console.log(this.x)
-        this.speed = 0;
-        this.game.bossDeath();
-        // this.frame = 0;
-        // document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
-        // this.image.src = './assets/images/characters/bosses/dongdong/dong-dong-dead.png';
-        // this.width = dongDongSizes.DEAD_WIDTH;
-        // this.height = dongDongSizes.DEAD_HEIGHT;
-        // this.speed = 3;
-        // up 
-      } else {
-        
-        this.speed = 0;
-        this.game.bossDeath();
-        // this.deathAnimation();
-      }
-    } else if (this.phase === 2 ) {
+    if (this.phase === 2 ) {
 
       if (this.x >= 120) {
         this.x -= 2;
@@ -180,10 +149,7 @@ class DongDong {
       document.getElementById("boss-layer-c-canvas").style.zIndex = "5";
       this.y = -40; 
       this.phase += 1
-      if (this.hitPoints <= 0) {
-        this.frameRate = 0;
-        this.death();
-      }
+      
       this.speed = -(this.speed);
     } else if (this.x <= -this.width) {
       this.width = dongDongSizes.RUN_RIGHT_WIDTH;

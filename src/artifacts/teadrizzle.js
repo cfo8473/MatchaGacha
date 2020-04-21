@@ -30,7 +30,7 @@ class TeaDrizzle {
   takeDamage(partyMember) {
     this.bossFrames = 1;
     if (Math.random() >= (1 - (partyMember.critChance * 0.01))) {
-      console.log("CRITICAL!")
+
       this.hitPoints -= partyMember.attackPower * 2;
     } else {
       this.hitPoints -= partyMember.attackPower;
