@@ -22,7 +22,7 @@ class Rage {
     this.image = new Image();
     this.image.src = './assets/images/characters/bosses/rage/rage.png';
     this.width = SIZES.CONFRONT_WIDTH,
-      this.height = SIZES.CONFRONT_HEIGHT
+    this.height = SIZES.CONFRONT_HEIGHT
 
 
     this.frameUp = true;
