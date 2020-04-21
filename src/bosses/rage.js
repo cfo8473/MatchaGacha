@@ -48,8 +48,6 @@ class Rage {
     if (this.hitPoints <= 0) {
       this.death();
     }
-
-    // console.log(this.hitPoints);
   }
 
   death() {
@@ -60,23 +58,6 @@ class Rage {
 
     this.game.player.freeCurrency += 40000;
   }
-
-
-  // shift() {
-  //   let shiftValue = this.flySpeed;
-  //   if (this.y <= 80) {
-  //     this.flyUp = true;
-  //   }
-  //   else if (this.y >= 125) {
-  //     this.flyUp = false;
-  //   }
-
-  //   if (this.flyUp === true) {
-  //     this.y += shiftValue;
-  //   } else if (this.flyUp === false) {
-  //     this.y -= shiftValue;
-  //   }
-  // }
 
   update() {
     console.log(this.frame);
@@ -113,13 +94,6 @@ class Rage {
   }
 
   shift() {
-    // console.log(this.x)
-    // console.log(this.phaseFrames);
-    // console.log(this.phase);
-    // console.log(this.deathStatus);
-    // console.log(`HP: ${this.hitPoints}`);
-
-    // console.log(this.image.src);
     if (this.phase === 3) {
 
       if (this.x <= -140) {
@@ -174,14 +148,6 @@ class Rage {
 
   draw() {
     this.update();
-    // this.shift();
-
-    // requestAnimationFrame(this.draw);
-
-    // console.log(this.canvas);
-    // console.log(this.bossFrames);
-
-
     this.canvas.clearRect(0, 0, 800, 800);
     this.canvas.save();
 
