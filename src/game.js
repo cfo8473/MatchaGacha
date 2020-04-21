@@ -313,24 +313,6 @@ class Game {
     this.delta = this.now - this.then;
 
     if ( this.delta > this.interval ) {
-
-      // this.autoAttackFrames -= this.autoAttackSpeed;
-      // //debug auto
-      // if (this.autoAttackFrames === 150) {
-      //   this.heroA.heroAttackAnimation();
-      //   this.boss.takeDamage(this.heroA);
-      // } else if (this.autoAttackFrames === 100) {
-      //   this.heroB.heroAttackAnimation();
-      //   this.boss.takeDamage(this.heroB);
-      // } else if (this.autoAttackFrames === 50) {
-      //   this.heroC.heroAttackAnimation();
-      //   this.boss.takeDamage(this.heroC);
-      // } else if (this.autoAttackFrames <= 0) {
-      //   this.autoAttackFrames = 200;
-      //   this.heroD.heroAttackAnimation();
-      //   this.boss.takeDamage(this.heroD);
-      // }
-
       // temporary stat display
       this.player.drawTapPower(this.context);
 
@@ -380,7 +362,6 @@ class Game {
 
       if (this.boss) {
         const currentHp = this.boss.hpPercentage();
-        // console.log(currentHp);
         this.context.strokeStyle = "rgba(0, 0, 0, 0.4)";
         this.context.rect(125, 26, 550, 24);
 

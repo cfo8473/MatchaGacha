@@ -13,9 +13,6 @@ const DmgText = require('../damage');
 
 class DongDong {
   constructor(game, bossCanvas) {
-    // console.log(bossCanvas);
-    // console.log(game);
-    // console.log(bossCanvas); 
     this.maxHitPoints = game.level * game.monsterBaseHP;
     this.hitPoints = this.maxHitPoints;
     this.x = 500;
@@ -106,12 +103,10 @@ class DongDong {
   }
 
   deathAnimation() {
-    // console.log(this.deathFrames);
     this.deathFrames -= 1;
     document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
     this.image.src = './assets/images/characters/bosses/dongdong/dong-dong-dead.png';
     this.frameRate = 55;
-    // console.log(this.x);
     this.width = dongDongSizes.DEAD_WIDTH;
     this.height = dongDongSizes.DEAD_HEIGHT;
     this.y = -54;
@@ -125,26 +120,16 @@ class DongDong {
   }
 
   shift() {
-    // console.log(this.x)
-    // console.log(this.phaseFrames);
-    // console.log(this.phase);
-    // console.log(this.deathStatus);
-    // console.log(`HP: ${this.hitPoints}`);
-
-    // console.log(this.image.src);
     if (this.deathStatus) {
       this.y = -54;
 
-      // if dead and x position is returning from moving -> right
       if (this.x >= -120) {
-        // console.log(this.x)
         this.frame = 0;
         document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
         this.image.src = './assets/images/characters/bosses/dongdong/dong-dong-dead.png';
         this.width = dongDongSizes.DEAD_WIDTH;
         this.height = dongDongSizes.DEAD_HEIGHT;
         this.speed = 3;
-        // up 
       } else {
 
         this.speed = 0;
@@ -193,8 +178,6 @@ class DongDong {
       this.image.src = './assets/images/characters/bosses/dongdong/dong-run-sprite-sheet-right-hills.png';
       document.getElementById("boss-layer-c-canvas").style.zIndex = "3";
     }
-
-
     this.x += -(this.speed);
 
 
