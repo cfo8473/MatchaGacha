@@ -171,7 +171,6 @@ class Game {
     const cloudLayerC = new Image();
 
     const bossLayerC = new Image();
-    // console.log(hill);
   
     // hill.src = "./assets/images/layers/smallhill.png";
     // dist / assets / images / layers / hill.png
@@ -261,8 +260,6 @@ class Game {
       limitPos: 70,
     }
 
-    // console.log(heroOptionsA);
-
     let heroOptionsB = {
       context: partyB,
       idleImage: heroIdleB,
@@ -330,7 +327,6 @@ class Game {
 
 
       if (this.damageTexts.length > 0) {
-        // console.log(this.damageTexts);
         this.damageTexts.forEach(dmgText => {
           dmgText.draw();
           if (dmgText.textFrames <= 0) {
@@ -384,14 +380,8 @@ class Game {
       }
 
       this.then = this.now - (this.delta % this.interval);
-      // console.log(`FPS: ${((this.now - this.then) * 6)}`);
 
     }
-  
-    
-
-    
-
   }
 
 }

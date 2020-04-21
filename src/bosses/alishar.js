@@ -40,7 +40,6 @@ class Alishar {
   takeDamage(partyMember) {
     this.bossFrames = 1;
     if (Math.random() >= (1 - (partyMember.critChance * 0.01))) {
-      console.log("CRITICAL!")
       this.hitPoints -= partyMember.attackPower * 2;
       let damageText = new DmgText(this.game, partyMember.attackPower * 2, true);
 
@@ -56,15 +55,12 @@ class Alishar {
     if (this.hitPoints <= 0) {
       this.death();
     }
-
-    // console.log(this.hitPoints);
   }
 
   takeDamageLimitBreak(heroDamage, critChance) {
     this.hitPoints -= heroDamage;
     let damageText;
     if (Math.random() >= (1 - (critChance * 0.01))) {
-      console.log("JKLDFSDS");
       damageText = new DmgText(this.game, (heroDamage * 1.5), true);
     } else {
       damageText = new DmgText(this.game, heroDamage, false);
@@ -129,12 +125,10 @@ class Alishar {
       return 0;
   }
   deathAnimation() {
-    // console.log(this.deathFrames);
     this.deathFrames -= 1;
     document.getElementById("boss-layer-c-canvas").style.zIndex = "6";
     this.image.src = './assets/images/characters/bosses/dongdong/dong-dong-dead.png';
     this.frameRate = 55;
-    // console.log(this.x);
     this.width = dongDongSizes.DEAD_WIDTH;
     this.height = dongDongSizes.DEAD_HEIGHT;
     this.y = -54;
@@ -147,13 +141,6 @@ class Alishar {
   }
 
   shift() {
-    // console.log(this.x)
-    // console.log(this.phaseFrames);
-    // console.log(this.phase);
-    // console.log(this.deathStatus);
-    // console.log(`HP: ${this.hitPoints}`);
-
-    // console.log(this.image.src);
     if (this.phase === 3) {
 
       if (this.x <= -140) {

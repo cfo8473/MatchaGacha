@@ -36,8 +36,6 @@ class CaffeineRage {
     if (this.hitPoints <= 0) {
       this.death();
     }
-
-    // console.log(this.hitPoints);
   }
 
   death() {

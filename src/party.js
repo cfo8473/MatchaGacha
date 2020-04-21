@@ -157,9 +157,6 @@ class Party {
       this.context.fillStyle = `rgba(171, ${this.limitBreakFrames * 20}, 171, 1)`;
       this.context.fillRect(130, 20, ((this.limitBreakFrames / 40) * 100) / 2, 10);
     }
-    
-    
-    
   }
 
   draw() {
@@ -211,7 +208,6 @@ class Party {
     this.context.fillStyle = 'white';
     this.context.fillText(`LIMIT`, 130, 15);
     this.context.fillText(`ATK`, 75, 15);
-    // this.context.fillText("DEBUG INFO", 55, 20);
     this.context.fillText(speedStat, 80, 65);
     this.context.fillText(attackStat, 130, 80);
     this.context.fillText(criticalStat, 130, 65);

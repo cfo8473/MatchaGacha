@@ -28,7 +28,6 @@ class Boss {
     } else {
       this.hitPoints -= partyMember.attackPower;
     }
-    // debug death
     if ( this.hitPoints <= 0 ) {
       this.death();
     }
@@ -39,7 +38,6 @@ class Boss {
   }
 
   death() {
-    // temporary death
     this.hitPoints += 1000;
     this.x = 200;
     this.y = 60;

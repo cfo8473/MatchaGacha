@@ -40,8 +40,6 @@ class TeaDrizzle {
     if (this.hitPoints <= 0) {
       this.death();
     }
-
-    // console.log(this.hitPoints);
   }
 
   death() {
@@ -54,7 +52,6 @@ class TeaDrizzle {
   }
 
   update() {
-    // console.log(this.frame);
 
     this.step += 1;
 
@@ -93,11 +90,9 @@ class TeaDrizzle {
     }
 
     if (this.frame >= 17 && this.frame <= 36) {
-      // console.log(this.frame) 
       // hero A hit with x3
       const currentBoss = this.game.boss;
       currentBoss.takeDamageLimitBreak(this.game.heroB.attackPower * 1.5, this.game.heroB.critChance);
-      // console.log(this.game.heroB.attackPower);
 
     }
 
