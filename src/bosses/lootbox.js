@@ -13,9 +13,6 @@ const DmgText = require('../damage');
 
 class LootBox {
   constructor(game, bossCanvas) {
-    // console.log(bossCanvas);
-    // console.log(game);
-    // console.log(bossCanvas); 
     this.maxHitPoints = game.level * game.monsterBaseHP;
     this.hitPoints = this.maxHitPoints;
     this.x = 400;

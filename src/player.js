@@ -19,7 +19,6 @@ class Player {
 
   // upgradeTap(value) {
   //   this.tapPower += value;
-  //   console.log(`${value} added to tap power (${this.tapPower})`);
   // }
 
   upgradeIncome(value) {

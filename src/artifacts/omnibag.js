@@ -55,8 +55,6 @@ class Omnibag {
   }
 
   update() {
-    // console.log(this.frame);
-
     this.step += 1;
 
     this.canvasList.forEach( (canvas) => {
