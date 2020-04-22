@@ -310,7 +310,6 @@ class Game {
     this.delta = this.now - this.then;
 
     if ( this.delta > this.interval ) {
-      // temporary stat display
       this.player.drawTapPower(this.context);
 
       // main canvas parallax draw
@@ -321,10 +320,6 @@ class Game {
       this.cloudLayerC.draw();
       this.mountains.draw();
       this.backgroundMountains.draw();
-
-
-      
-
 
       if (this.damageTexts.length > 0) {
         this.damageTexts.forEach(dmgText => {
