@@ -10,9 +10,9 @@ class Party {
     this.goldCost = 1;
     this.x = 0;
     this.y = 0;
+
+    this.partyMoney = 0;
   
-
-
     this.upgradeable = false;
 
     // images
@@ -122,19 +122,6 @@ class Party {
     if (this.limitBreakFrames === 40){
       this.context.fillStyle = `rgba(0, ${((this.frames + 180) % 255) + 100}, 0, 1)`;
       this.context.fillRect(130, 20, 50, 10);
-      // this.context.drawImage(this.limitKey, 44, 35);
-
-      // this.game.context.drawImage(
-      //   this.limitKey,
-      //   32 * this.frameB,
-      //   0,
-      //   32,
-      //   32,
-      //   95,
-      //   35,
-      //   32,
-      //   32
-      // );
 
       this.game.cloudLayerA.context.drawImage(
         this.limitKey,
