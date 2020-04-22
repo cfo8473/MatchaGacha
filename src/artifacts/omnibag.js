@@ -66,8 +66,6 @@ class Omnibag {
 
 
     if (this.frame > 14) {
-
-
       if (this.phase === 8) {
         document.getElementById("sky-canvas").style.filter = "brightness(100%)";
         document.getElementById("mountains-canvas").style.filter = "brightness(100%)";
@@ -102,6 +100,12 @@ class Omnibag {
         this.frame += 1;
         this.step = 0
       }
+    }
+
+    //temp func for omni lb
+    if (this.frameRate > 40) {
+      this.frameRate = 0;
+      this.phase += 1;
     }
 
     if (this.frame >= 8) {
