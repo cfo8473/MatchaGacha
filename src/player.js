@@ -3,14 +3,19 @@ class Player {
     this.freeCurrency = 0;
     this.premiumCurrency = 0;
     this.passiveIncome = 1;
+    this.tapDamage = 1;
+    this.tapFrame = 1;
 
     
     setInterval(() => this.income(), 1000);
   }
 
   tap(value) {
-    // this.freeCurrency += value;
-    // console.log(`FREE CURRENCY ${this.freeCurrency}`);
+    this.freeCurrency += value;
+    this.tapFrame += 1;
+    if (this.tapFrame >= 5) {
+      this.tapFrame = 1;
+    }
   }
 
   income() {
