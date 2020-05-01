@@ -33,6 +33,11 @@ class mobTemplate {
     }
   }
 
+  // debug function to test sprite changes
+  acceptSprite(sprite) {
+    this.image = sprite;
+  }
+
   takeDamageLimitBreak(heroDamage) {
     this.hitPoints -= heroDamage;
   }
