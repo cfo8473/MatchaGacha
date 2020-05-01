@@ -139,10 +139,6 @@ class Omnibag {
 
       }
     }
-
-
-
-
   }
 
   draw() {

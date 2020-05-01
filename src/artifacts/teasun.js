@@ -15,7 +15,7 @@ class CaffeineRage {
     this.image = new Image();
     this.image.src = './assets/images/limitbreak/greenteasun.png';
     this.width = SIZES.CONFRONT_WIDTH,
-      this.height = SIZES.CONFRONT_HEIGHT
+    this.height = SIZES.CONFRONT_HEIGHT
     this.frameUp = true;
     this.step = 0;
     this.frame = 5;
@@ -117,10 +117,6 @@ class CaffeineRage {
       }
 
     }
-
-
-
-
   }
 
   draw() {
